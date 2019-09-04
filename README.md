@@ -1,3 +1,3 @@
-![torii-shopping-app-header](https://user-images.githubusercontent.com/5593590/64108153-6d020b00-cd7c-11e9-97b4-51b49b286fd4.png)
+![torii-shopping-app-header](https://user-images.githubusercontent.com/5593590/64252021-21856380-cf1a-11e9-9f01-6ce35b06f40c.png)
 
 ToriiShopping app is a flutter application for iOS and Android

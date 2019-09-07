@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ToriiSearchBox extends StatelessWidget {
+class SearchBox extends StatelessWidget {
   static const _border =
       OutlineInputBorder(
         borderSide: BorderSide(color: Colors.transparent),

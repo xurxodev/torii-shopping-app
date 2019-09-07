@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 
-class ToriiCardImage extends StatelessWidget {
+class SearchItem extends StatelessWidget {
   final String pathImage;
+  final double height;
+  final double width;
 
-  ToriiCardImage({Key key, @required this.pathImage});
+  SearchItem({
+    Key key,
+    @required this.pathImage,
+    this.height = 250.0,
+    this.width = 250.0
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 250.0,
-      height: 250.0,
-      margin: EdgeInsets.fromLTRB(16.0,8.0,16.0,8.0),
+      width: width,
+      height: height,
+      margin: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
       decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.cover, image: NetworkImage(pathImage)),

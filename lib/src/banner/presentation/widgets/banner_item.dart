@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class SearchItem extends StatelessWidget {
+class BannerItem extends StatelessWidget {
   final String pathImage;
 
-  SearchItem({Key key, @required this.pathImage});
+  BannerItem({Key key, @required this.pathImage});
 
   @override
   Widget build(BuildContext context) {

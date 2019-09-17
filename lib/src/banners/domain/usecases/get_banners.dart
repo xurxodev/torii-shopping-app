@@ -1,4 +1,4 @@
-import 'package:torii_shopping/src/banner/domain/repositories/banner_repository.dart';
+import 'package:torii_shopping/src/banners/domain/repositories/banner_repository.dart';
 
 import '../banner.dart';
 

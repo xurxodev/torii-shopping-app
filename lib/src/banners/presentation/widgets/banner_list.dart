@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:torii_shopping/src/banner/domain/banner.dart' as MyBanner;
-import 'package:torii_shopping/src/banner/presentation/blocs/banners_bloc.dart';
+import 'package:torii_shopping/src/banners/domain/banner.dart' as MyBanner;
+import 'package:torii_shopping/src/banners/presentation/blocs/banners_bloc.dart';
 import 'package:torii_shopping/src/common/blocs/BlocProvider.dart';
 import 'banner_item.dart';
 

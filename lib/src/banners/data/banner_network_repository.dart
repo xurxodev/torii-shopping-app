@@ -1,8 +1,8 @@
 import 'dart:collection';
 import 'dart:convert';
 
-import 'package:torii_shopping/src/banner/domain/banner.dart';
-import 'package:torii_shopping/src/banner/domain/repositories/banner_repository.dart';
+import 'package:torii_shopping/src/banners/domain/banner.dart';
+import 'package:torii_shopping/src/banners/domain/repositories/banner_repository.dart';
 import 'package:http/http.dart' as http;
 
 class BannerNetworkRepository implements BannerRepository {

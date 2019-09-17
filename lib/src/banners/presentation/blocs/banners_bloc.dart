@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:torii_shopping/src/banner/domain/banner.dart';
-import 'package:torii_shopping/src/banner/domain/usecases/get_banners.dart';
+import 'package:torii_shopping/src/banners/domain/banner.dart';
+import 'package:torii_shopping/src/banners/domain/usecases/get_banners.dart';
 import 'package:torii_shopping/src/common/blocs/bloc_base.dart';
 
 class BannersBloc implements BlocBase{

@@ -4,7 +4,7 @@ import 'package:torii_shopping/src/common/torii_colors.dart';
 
 import 'search_box.dart';
 
-class SearchToolbar extends StatelessWidget {
+class HomeToolbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

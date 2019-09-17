@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:torii_shopping/src/common/torii_colors.dart';
 import 'src/home/screens/home_screen.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
         title: 'Torii Shopping',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: ToriiColors.transparent,
           accentColor: Colors.blueAccent
         ),
         home: HomeScreen());

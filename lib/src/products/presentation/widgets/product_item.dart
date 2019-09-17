@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:torii_shopping/src/Browser/presentation/screens/browser_screen.dart';
 import 'package:torii_shopping/src/products/domain/product.dart';
 
 class ProductItem extends StatelessWidget {
@@ -8,24 +9,34 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(8.0),
-      child: Row(
-        children: <Widget>[
-          Image.network(
-            product.images[0],
-            fit: BoxFit.contain,
-            height: 125,
-            width: 125,
-          ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.all(16.0),
-              child:
-                  Text(product.name, style: Theme.of(context).textTheme.title),
+    return new GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => BrowserScreen(
+                      url: product.url,
+                    )));
+      },
+      child: Container(
+        padding: EdgeInsets.all(8.0),
+        child: Row(
+          children: <Widget>[
+            Image.network(
+              product.images[0],
+              fit: BoxFit.contain,
+              height: 125,
+              width: 125,
             ),
-          )
-        ],
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(product.name,
+                    style: Theme.of(context).textTheme.title),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

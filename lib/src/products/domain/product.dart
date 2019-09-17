@@ -5,7 +5,8 @@ class Product{
   final List<String> images;
   final String name;
   final String upc;
+  final String url;
 
   Product(this.asin, this.description, this.ean, this.images, this.name,
-      this.upc);
+      this.upc, this.url);
 }

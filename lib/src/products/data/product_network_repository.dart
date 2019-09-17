@@ -41,6 +41,6 @@ class ProductNetworkRepository implements ProductRepository {
     (json['images'] as List).forEach((i) => images.add(i));
 
     return new Product(json['asin'], json['description'], json['ean'], images,
-        json['name'], json['upc']);
+        json['name'], json['upc'], json['url']);
   }
 }

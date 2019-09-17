@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:torii_shopping/src/banners/data/banner_network_repository.dart';
 import 'package:torii_shopping/src/common/blocs/BlocProvider.dart';
 import 'package:torii_shopping/src/products/data/product_network_repository.dart';
 import 'package:torii_shopping/src/products/domain/product.dart';

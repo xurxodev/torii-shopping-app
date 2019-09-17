@@ -66,14 +66,17 @@ class SearchProductsDelegate extends SearchDelegate {
   }
 
   Widget buildSearchResults(BuildContext context, List<Product> searchResults) {
-    return ListView.separated(
-      separatorBuilder: (context, index) => Divider(
-        color: Colors.grey,
+    return Container(
+      child: ListView.separated(
+        separatorBuilder: (context, index) => Divider(
+          color: Colors.grey,
+        ),
+        itemCount: searchResults.length,
+        itemBuilder: (context, index) => Center(
+          child: ProductItem(product: searchResults[index]),
+        ),
       ),
-      itemCount: searchResults.length,
-      itemBuilder: (context, index) => Center(
-        child: ProductItem(product: searchResults[index]),
-      ),
+      color: Colors.white,
     );
   }
 

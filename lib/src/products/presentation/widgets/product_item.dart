@@ -8,7 +8,7 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: EdgeInsets.all(8.0),
       child: Row(
         children: <Widget>[

@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/common/blocs/BlocProvider.dart';
 import 'package:torii_shopping/src/products/data/product_network_repository.dart';
@@ -25,7 +28,7 @@ class SearchProductsDelegate extends SearchDelegate {
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(Icons.clear),
+        icon: Icon(Platform.isAndroid?Icons.clear:CupertinoIcons.clear_circled_solid),
         onPressed: () {
           query = '';
         },
@@ -36,7 +39,7 @@ class SearchProductsDelegate extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.arrow_back),
+      icon: Icon(Platform.isAndroid?Icons.arrow_back:CupertinoIcons.back),
       onPressed: () {
         close(context, null);
         _searchProductsBloc.dispose();

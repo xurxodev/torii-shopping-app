@@ -45,7 +45,7 @@ class BannerList extends StatelessWidget {
                       .map(
                         (banner) => Padding(
                           padding: EdgeInsets.only(left: 4, right: 4),
-                          child: BannerItem(pathImage: banner.imageUrl),
+                          child: BannerItem(banner: banner),
                         ),
                       )
                       .toList(),

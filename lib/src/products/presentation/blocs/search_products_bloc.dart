@@ -14,19 +14,20 @@ class SearchProductsBloc implements BlocBase {
 
   Stream<PageResult<Product>> get results => _resultsController.stream;
 
-  String _query = "";
+  bool _searching = false;
 
   SearchProductsBloc(this._getProductsUseCase) {
     _queryController.stream.listen((q) => _performSearch(q));
   }
 
   _performSearch(String query) async {
-    if (_query != query) {
-      _query = query;
+    if (!_searching) {
+      _searching = true;
 
       var productsPage = await _getProductsUseCase.execute(query);
 
       _resultsController.sink.add(productsPage);
+      _searching = false;
     }
   }
 

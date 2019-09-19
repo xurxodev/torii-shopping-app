@@ -14,8 +14,7 @@ class ProductNetworkRepository implements ProductRepository {
   Future<PageResult<Product>> _fetchProducts(String query) async {
     try {
       final response = await http
-          .get('http://10.0.2.2:8000/products?q=$query');
-      // https://torii-shopping-api.herokuapp.com/products?q=$query');
+          .get('https://torii-shopping-api.herokuapp.com/products?q=$query');
 
       if (response.statusCode == 200) {
         // If server returns an OK response, parse the JSON.

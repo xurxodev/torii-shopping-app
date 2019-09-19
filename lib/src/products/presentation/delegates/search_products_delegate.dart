@@ -3,32 +3,17 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/common/blocs/BlocProvider.dart';
-import 'package:torii_shopping/src/products/data/product_network_repository.dart';
-import 'package:torii_shopping/src/products/domain/product.dart';
-import 'package:torii_shopping/src/products/domain/usecases/get_products.dart';
 import 'package:torii_shopping/src/products/presentation/blocs/search_products_bloc.dart';
-import 'package:torii_shopping/src/products/presentation/widgets/product_item.dart';
+import 'package:torii_shopping/src/products/presentation/widgets/product_list.dart';
 
 class SearchProductsDelegate extends SearchDelegate {
-  SearchProductsBloc _searchProductsBloc;
-  BlocProvider blocProviderResults;
-
-  SearchProductsDelegate() {
-    ProductNetworkRepository repository = new ProductNetworkRepository();
-    GetProductsUseCase getProductsUseCase = new GetProductsUseCase(repository);
-    _searchProductsBloc = new SearchProductsBloc(getProductsUseCase);
-
-/*    blocProviderResults = BlocProvider<SearchProductsBloc>(
-      bloc: _searchProductsBloc,
-      child: ProductList(),
-    );*/
-  }
-
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(Platform.isAndroid?Icons.clear:CupertinoIcons.clear_circled_solid),
+        icon: Icon(Platform.isAndroid
+            ? Icons.clear
+            : CupertinoIcons.clear_circled_solid),
         onPressed: () {
           query = '';
         },
@@ -39,47 +24,21 @@ class SearchProductsDelegate extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Platform.isAndroid?Icons.arrow_back:CupertinoIcons.back),
+      icon: Icon(Platform.isAndroid ? Icons.arrow_back : CupertinoIcons.back),
       onPressed: () {
         close(context, null);
-        _searchProductsBloc.dispose();
       },
     );
   }
 
   @override
   Widget buildResults(BuildContext context) {
+    SearchProductsBloc _searchProductsBloc =
+        BlocProvider.of<SearchProductsBloc>(context);
+
     _searchProductsBloc.query.add(query);
 
-    return StreamBuilder<List<Product>>(
-      stream: _searchProductsBloc.results,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return buildSearchResults(context, snapshot.data);
-        } else if (snapshot.hasError) {
-          return Text("${snapshot.error}");
-        }
-
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
-  }
-
-  Widget buildSearchResults(BuildContext context, List<Product> searchResults) {
-    return Container(
-      child: ListView.separated(
-        separatorBuilder: (context, index) => Divider(
-          color: Colors.grey,
-        ),
-        itemCount: searchResults.length,
-        itemBuilder: (context, index) => Center(
-          child: ProductItem(product: searchResults[index]),
-        ),
-      ),
-      color: Colors.white,
-    );
+    return ProductList();
   }
 
   @override

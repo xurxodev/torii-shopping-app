@@ -10,7 +10,9 @@ class BannersBloc implements BlocBase{
   final _bannersController = StreamController<Map<String, List<Banner>>>();
   Stream<Map<String, List<Banner>>> get banners => _bannersController.stream;
 
-  BannersBloc(this._getBannersUseCase);
+  BannersBloc(this._getBannersUseCase){
+    init();
+  }
 
   init() async {
     var banners = await _getBannersUseCase.execute();

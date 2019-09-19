@@ -1,6 +1,8 @@
+import 'package:torii_shopping/src/common/domain/page_result.dart';
+
 import '../product.dart';
 
 class ProductRepository{
   // ignore: missing_return
-  Future<List<Product>> getProducts(String query){}
+  Future<PageResult<Product>> getProducts(String query){}
 }

@@ -1,18 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/common/blocs/BlocProvider.dart';
-import 'package:torii_shopping/src/common/domain/page_result.dart';
-import 'package:torii_shopping/src/products/domain/product.dart';
 import 'package:torii_shopping/src/products/presentation/blocs/search_products_bloc.dart';
+import 'package:torii_shopping/src/products/presentation/state/search_products_state.dart';
 import 'package:torii_shopping/src/products/presentation/widgets/product_item.dart';
 
 class ProductList extends StatelessWidget {
+  ScrollController _scrollController;
+
+  SearchProductsBloc bloc;
+
+  ProductList() {
+    _scrollController = new ScrollController();
+
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        bloc.loadMoreData();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final SearchProductsBloc bloc =
-        BlocProvider.of<SearchProductsBloc>(context);
+    bloc = BlocProvider.of<SearchProductsBloc>(context);
 
-    return StreamBuilder<PageResult<Product>>(
-      stream: bloc.results,
+    return StreamBuilder<SearchProductsState>(
+      stream: bloc.state,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return buildSearchResults(context, snapshot.data);
@@ -30,19 +43,34 @@ class ProductList extends StatelessWidget {
     );
   }
 
-  Widget buildSearchResults(
-      BuildContext context, PageResult<Product> pageResult) {
+  Widget buildSearchResults(BuildContext context,
+      SearchProductsState state) {
     return Container(
       child: ListView.separated(
-        separatorBuilder: (context, index) => Divider(
-          color: Colors.grey,
-        ),
-        itemCount: pageResult.items.length,
-        itemBuilder: (context, index) => Center(
-          child: ProductItem(product: pageResult.items[index]),
-        ),
+        controller:_scrollController,
+        separatorBuilder: (context, index) =>
+            Divider(
+              color: Colors.grey,
+            ),
+        itemCount: state.result.items.length + 1,
+        itemBuilder: (context, index) {
+          return buildItem(index, state);
+        },
       ),
       color: Colors.white,
     );
+  }
+
+  Widget buildItem(int index, SearchProductsState state) {
+    if (index == state.result.items.length && state.loading) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    } else if (index < state.result.items.length) {
+      return Center(
+          child: ProductItem(product: state.result.items[index]));
+    } else {
+      return Column();
+    }
   }
 }

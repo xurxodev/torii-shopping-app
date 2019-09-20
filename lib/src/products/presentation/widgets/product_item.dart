@@ -22,12 +22,12 @@ class ProductItem extends StatelessWidget {
         padding: EdgeInsets.all(8.0),
         child: Row(
           children: <Widget>[
-            Image.network(
+            product.images.length > 0? Image.network(
               product.images[0],
               fit: BoxFit.contain,
               height: 125,
               width: 125,
-            ),
+            ): Column(),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.all(16.0),

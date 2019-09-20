@@ -4,5 +4,5 @@ import '../product.dart';
 
 class ProductRepository{
   // ignore: missing_return
-  Future<PageResult<Product>> getProducts(String query){}
+  Future<PageResult<Product>> getProducts(String query, int page){}
 }

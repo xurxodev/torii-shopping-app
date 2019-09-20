@@ -3,30 +3,51 @@ import 'package:torii_shopping/src/common/blocs/bloc_base.dart';
 import 'package:torii_shopping/src/common/domain/page_result.dart';
 import 'package:torii_shopping/src/products/domain/product.dart';
 import 'package:torii_shopping/src/products/domain/usecases/get_products.dart';
+import 'package:torii_shopping/src/products/presentation/state/search_products_state.dart';
 
 class SearchProductsBloc implements BlocBase {
   GetProductsUseCase _getProductsUseCase;
 
-  final _resultsController = StreamController<PageResult<Product>>.broadcast();
+  final _resultsController = StreamController<SearchProductsState>.broadcast();
   final _queryController = StreamController<String>.broadcast();
+
+  String _query;
 
   StreamSink<String> get query => _queryController.sink;
 
-  Stream<PageResult<Product>> get results => _resultsController.stream;
+  SearchProductsState _state;
+
+  Stream<SearchProductsState> get state => _resultsController.stream;
 
   bool _searching = false;
 
   SearchProductsBloc(this._getProductsUseCase) {
-    _queryController.stream.listen((q) => _performSearch(q));
+    _queryController.stream.listen((q) {
+      _query = q;
+
+      _performSearch(q, 1);
+    });
   }
 
-  _performSearch(String query) async {
+  _performSearch(String query, int page) async {
     if (!_searching) {
       _searching = true;
 
-      var productsPage = await _getProductsUseCase.execute(query);
+      if (page == 1){
+        _state= SearchProductsState.empty();
+      }
 
-      _resultsController.sink.add(productsPage);
+      var productsPage = await _getProductsUseCase.execute(query,page);
+
+      var totalItems = new List<Product>();
+      totalItems.addAll(_state.result.items);
+      totalItems.addAll(productsPage.items);
+
+      _state = new SearchProductsState(false,
+          PageResult(totalItems, productsPage.page, productsPage.totalPages));
+
+      _resultsController.sink.add(_state);
+
       _searching = false;
     }
   }
@@ -35,5 +56,12 @@ class SearchProductsBloc implements BlocBase {
   void dispose() {
     _resultsController.close();
     _queryController.close();
+  }
+
+  void loadMoreData() {
+    if (_state.result.page < _state.result.totalPages) {
+      _resultsController.sink.add(new SearchProductsState(true, _state.result));
+      _performSearch(_query, _state.result.page + 1);
+    }
   }
 }

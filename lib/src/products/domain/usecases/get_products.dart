@@ -8,7 +8,7 @@ class GetProductsUseCase {
 
   GetProductsUseCase(this._productRepository);
 
-  Future<PageResult<Product>> execute(String query){
-    return _productRepository.getProducts(query);
+  Future<PageResult<Product>> execute(String query, int page){
+    return _productRepository.getProducts(query, page);
   }
 }

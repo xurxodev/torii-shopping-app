@@ -7,14 +7,14 @@ import 'package:torii_shopping/src/products/domain/repositories/product_reposito
 
 class ProductNetworkRepository implements ProductRepository {
   @override
-  Future<PageResult<Product>> getProducts(String query) async {
-    return await _fetchProducts(query);
+  Future<PageResult<Product>> getProducts(String query, int page) async {
+    return await _fetchProducts(query, page);
   }
 
-  Future<PageResult<Product>> _fetchProducts(String query) async {
+  Future<PageResult<Product>> _fetchProducts(String query, int page) async {
     try {
-      final response = await http
-          .get('https://torii-shopping-api.herokuapp.com/products?q=$query');
+      final response = await http.get(
+          'https://torii-shopping-api.herokuapp.com/products?q=$query&page=$page');
 
       if (response.statusCode == 200) {
         // If server returns an OK response, parse the JSON.
@@ -35,8 +35,7 @@ class ProductNetworkRepository implements ProductRepository {
 
     (json['items'] as List).forEach((i) => products.add(_parseProduct(i)));
 
-    return PageResult(
-        products, json['page'], json['totalPages']);
+    return PageResult(products, json['page'], json['totalPages']);
   }
 
   Product _parseProduct(Map<String, dynamic> json) {

@@ -5,11 +5,10 @@ import 'package:torii_shopping/src/suggestions/domain/entities/suggestion.dart';
 class SearchProductsState {
   final bool loading;
   final PageResult<Product> result;
-  final List<Suggestion> suggestions;
 
-  SearchProductsState(this.loading, this.result, this.suggestions);
+  SearchProductsState(this.loading, this.result);
 
-  factory SearchProductsState.empty(){
-    return SearchProductsState(true,PageResult.empty(), new List());
+  factory SearchProductsState.empty() {
+    return SearchProductsState(true, PageResult.empty());
   }
 }

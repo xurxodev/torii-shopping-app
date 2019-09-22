@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/common/blocs/BlocProvider.dart';
 import 'package:torii_shopping/src/search/presentation/blocs/search_products_bloc.dart';
-import 'package:torii_shopping/src/search/presentation/state/search_products_state.dart';
 import 'package:torii_shopping/src/suggestions/domain/entities/suggestion.dart';
 import 'package:torii_shopping/src/suggestions/presentation/widgets/suggestion_item.dart';
 
@@ -16,8 +15,8 @@ class SuggestionsList extends StatelessWidget {
   Widget build(BuildContext context) {
     bloc = BlocProvider.of<SearchProductsBloc>(context);
 
-    return StreamBuilder<SearchProductsState>(
-      stream: bloc.state,
+    return StreamBuilder<List<Suggestion>>(
+      stream: bloc.suggestions,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return buildSuggestions(context, snapshot.data);
@@ -33,17 +32,17 @@ class SuggestionsList extends StatelessWidget {
     );
   }
 
-  Widget buildSuggestions(BuildContext context, SearchProductsState state) {
+  Widget buildSuggestions(BuildContext context, List<Suggestion> suggestions) {
     return Container(
       child: ListView.separated(
         separatorBuilder: (context, index) => Divider(
           color: Colors.grey,
         ),
-        itemCount: state.suggestions.length,
+        itemCount: suggestions.length,
         itemBuilder: (context, index) {
           return SuggestionItem(
-            suggestion: state.suggestions[index],
-            onTap: ()=> onSuggestionSelected(state.suggestions[index]),
+            suggestion: suggestions[index],
+            onTap: ()=> onSuggestionSelected(suggestions[index]),
           );
         },
       ),

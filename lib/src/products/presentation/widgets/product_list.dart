@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/common/blocs/BlocProvider.dart';
+import 'package:torii_shopping/src/products/presentation/state/products_result_state.dart';
 import 'package:torii_shopping/src/products/presentation/widgets/product_item.dart';
 import 'package:torii_shopping/src/search/presentation/blocs/search_products_bloc.dart';
-import 'package:torii_shopping/src/search/presentation/state/search_products_state.dart';
 
 class ProductList extends StatelessWidget {
   ScrollController _scrollController;
@@ -24,7 +24,7 @@ class ProductList extends StatelessWidget {
   Widget build(BuildContext context) {
     bloc = BlocProvider.of<SearchProductsBloc>(context);
 
-    return StreamBuilder<SearchProductsState>(
+    return StreamBuilder<ProductsResultState>(
       stream: bloc.state,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
@@ -44,7 +44,7 @@ class ProductList extends StatelessWidget {
   }
 
   Widget buildSearchResults(BuildContext context,
-      SearchProductsState state) {
+      ProductsResultState state) {
     return Container(
       child: ListView.separated(
         controller:_scrollController,
@@ -61,7 +61,7 @@ class ProductList extends StatelessWidget {
     );
   }
 
-  Widget buildItem(int index, SearchProductsState state) {
+  Widget buildItem(int index, ProductsResultState state) {
     if (index == state.result.items.length && state.loading) {
       return Center(
         child: CircularProgressIndicator(),

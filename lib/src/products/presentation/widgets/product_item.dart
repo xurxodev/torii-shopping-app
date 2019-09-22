@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/Browser/presentation/screens/browser_screen.dart';
-import 'package:torii_shopping/src/products/domain/product.dart';
+import 'package:torii_shopping/src/products/domain/entities/product.dart';
 
 class ProductItem extends StatelessWidget {
   final Product product;

@@ -4,6 +4,8 @@ import 'package:torii_shopping/src/banners/presentation/blocs/banners_bloc.dart'
 import 'package:torii_shopping/src/products/data/product_network_repository.dart';
 import 'package:torii_shopping/src/products/domain/usecases/get_products.dart';
 import 'package:torii_shopping/src/products/presentation/blocs/search_products_bloc.dart';
+import 'package:torii_shopping/src/suggestions/data/suggestion_network_repository.dart';
+import 'package:torii_shopping/src/suggestions/domain/usecases/get_suggestions.dart';
 
 class DependenciesProvider {
   static BannersBloc _bannersBloc;
@@ -20,11 +22,19 @@ class DependenciesProvider {
   }
 
   static SearchProductsBloc provideSearchProductsBloc() {
-    if (_bannersBloc == null) {
-      ProductNetworkRepository repository = new ProductNetworkRepository();
+    if (_searchProductsBloc == null) {
+      ProductNetworkRepository productRepository =
+          new ProductNetworkRepository();
       GetProductsUseCase getProductsUseCase =
-          new GetProductsUseCase(repository);
-      _searchProductsBloc = new SearchProductsBloc(getProductsUseCase);
+          new GetProductsUseCase(productRepository);
+
+      SuggestionNetworkRepository suggestionsRepository =
+          new SuggestionNetworkRepository();
+      GetSuggestionsUseCase getSuggestionsUseCase =
+          new GetSuggestionsUseCase(suggestionsRepository);
+
+      _searchProductsBloc =
+          new SearchProductsBloc(getProductsUseCase, getSuggestionsUseCase);
     }
 
     return _searchProductsBloc;

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/common/blocs/BlocProvider.dart';
 import 'package:torii_shopping/src/products/presentation/blocs/search_products_bloc.dart';
 import 'package:torii_shopping/src/products/presentation/widgets/product_list.dart';
+import 'package:torii_shopping/src/suggestions/presentation/widgets/suggestions_list.dart';
 
 class SearchProductsDelegate extends SearchDelegate {
   @override
@@ -36,15 +37,23 @@ class SearchProductsDelegate extends SearchDelegate {
     SearchProductsBloc _searchProductsBloc =
         BlocProvider.of<SearchProductsBloc>(context);
 
-    _searchProductsBloc.query.add(query);
+    _searchProductsBloc.performSearch(query, 1);
 
     return ProductList();
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // This method is called everytime the search term changes.
-    // If you want to add search suggestions as the user enters their search term, this is the place to do that.
-    return Column();
+    SearchProductsBloc _searchProductsBloc =
+        BlocProvider.of<SearchProductsBloc>(context);
+
+    _searchProductsBloc.query.add(query);
+
+    return SuggestionsList(
+      onSuggestionSelected: (s) {
+        query = s.value;
+        this.showResults(context);
+      },
+    );
   }
 }

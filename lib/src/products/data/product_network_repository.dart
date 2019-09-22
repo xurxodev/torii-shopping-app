@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:torii_shopping/src/common/domain/page_result.dart';
-import 'package:torii_shopping/src/products/domain/product.dart';
+import 'package:torii_shopping/src/products/domain/entities/product.dart';
 import 'package:torii_shopping/src/products/domain/repositories/product_repository.dart';
 
 class ProductNetworkRepository implements ProductRepository {

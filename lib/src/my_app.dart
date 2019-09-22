@@ -4,7 +4,7 @@ import 'common/blocs/BlocProvider.dart';
 import 'common/di/depdendencies_provider.dart';
 import 'common/torii_colors.dart';
 import 'home/screens/home_screen.dart';
-import 'products/presentation/blocs/search_products_bloc.dart';
+import 'search/presentation/blocs/search_products_bloc.dart';
 
 class MyApp extends StatelessWidget {
   @override

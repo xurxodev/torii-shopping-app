@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:torii_shopping/src/products/presentation/delegates/search_products_delegate.dart';
+import 'package:torii_shopping/src/search/presentation/delegates/search_products_delegate.dart';
 
 class SearchBox extends StatelessWidget {
   static const _border = OutlineInputBorder(

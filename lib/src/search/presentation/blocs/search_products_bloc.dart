@@ -3,7 +3,7 @@ import 'package:torii_shopping/src/common/blocs/bloc_base.dart';
 import 'package:torii_shopping/src/common/domain/page_result.dart';
 import 'package:torii_shopping/src/products/domain/entities/product.dart';
 import 'package:torii_shopping/src/products/domain/usecases/get_products.dart';
-import 'package:torii_shopping/src/products/presentation/state/search_products_state.dart';
+import 'package:torii_shopping/src/search/presentation/state/search_products_state.dart';
 import 'package:torii_shopping/src/suggestions/domain/usecases/get_suggestions.dart';
 
 class SearchProductsBloc implements BlocBase {
@@ -35,19 +35,20 @@ class SearchProductsBloc implements BlocBase {
     if (!_searching) {
       _searching = true;
 
-      if (page == 1){
-        _state= SearchProductsState.empty();
+      if (page == 1) {
+        _state = SearchProductsState.empty();
       }
 
-      var productsPage = await _getProductsUseCase.execute(query,page);
+      var productsPage = await _getProductsUseCase.execute(query, page);
 
       var totalItems = new List<Product>();
       totalItems.addAll(_state.result.items);
       totalItems.addAll(productsPage.items);
 
-      _state = new SearchProductsState(false,
+      _state = new SearchProductsState(
+          false,
           PageResult(totalItems, productsPage.page, productsPage.totalPages),
-      new List());
+          new List());
 
       _resultsController.sink.add(_state);
 
@@ -56,13 +57,13 @@ class SearchProductsBloc implements BlocBase {
   }
 
   void loadSuggestions(String prefix) async {
-        _state= SearchProductsState.empty();
+    _state = SearchProductsState.empty();
 
-      final suggestions = await _getSuggestionsUseCase.execute(prefix);
+    final suggestions = await _getSuggestionsUseCase.execute(prefix);
 
-      _state = new SearchProductsState(false, _state.result, suggestions);
+    _state = new SearchProductsState(false, _state.result, suggestions);
 
-      _resultsController.sink.add(_state);
+    _resultsController.sink.add(_state);
   }
 
   @override
@@ -75,6 +76,7 @@ class SearchProductsBloc implements BlocBase {
     if (_state.result.page < _state.result.totalPages) {
       _state = new SearchProductsState(true, _state.result, _state.suggestions);
       _resultsController.sink.add(_state);
+      performSearch(_query, _state.result.page + 1);
     }
   }
 }

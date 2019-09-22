@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/common/blocs/BlocProvider.dart';
-import 'package:torii_shopping/src/products/presentation/blocs/search_products_bloc.dart';
 import 'package:torii_shopping/src/products/presentation/widgets/product_list.dart';
+import 'package:torii_shopping/src/search/presentation/blocs/search_products_bloc.dart';
 import 'package:torii_shopping/src/suggestions/presentation/widgets/suggestions_list.dart';
 
 class SearchProductsDelegate extends SearchDelegate {

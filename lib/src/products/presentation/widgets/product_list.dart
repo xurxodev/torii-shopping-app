@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/common/blocs/BlocProvider.dart';
-import 'package:torii_shopping/src/products/presentation/blocs/search_products_bloc.dart';
-import 'package:torii_shopping/src/products/presentation/state/search_products_state.dart';
 import 'package:torii_shopping/src/products/presentation/widgets/product_item.dart';
+import 'package:torii_shopping/src/search/presentation/blocs/search_products_bloc.dart';
+import 'package:torii_shopping/src/search/presentation/state/search_products_state.dart';
 
 class ProductList extends StatelessWidget {
   ScrollController _scrollController;

@@ -3,7 +3,7 @@ import 'package:torii_shopping/src/banners/domain/usecases/get_banners.dart';
 import 'package:torii_shopping/src/banners/presentation/blocs/banners_bloc.dart';
 import 'package:torii_shopping/src/products/data/product_network_repository.dart';
 import 'package:torii_shopping/src/products/domain/usecases/get_products.dart';
-import 'package:torii_shopping/src/products/presentation/blocs/search_products_bloc.dart';
+import 'package:torii_shopping/src/search/presentation/blocs/search_products_bloc.dart';
 import 'package:torii_shopping/src/suggestions/data/suggestion_network_repository.dart';
 import 'package:torii_shopping/src/suggestions/domain/usecases/get_suggestions.dart';
 

@@ -9,20 +9,25 @@ class SuggestionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: onTap,
-      title: Row(
-        children: <Widget>[
-          Text(suggestion.value),
-          Padding(
-            padding: EdgeInsets.only(left: 16.0),
-            child: suggestion.suggestionCategories.length > 0
-                ? Text("en " + suggestion.suggestionCategories[0].display,
-                    style: Theme.of(context).textTheme.caption)
-                : Column(),
-          )
-        ],
-      ),
-    );
+
+    return
+        InkWell(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8.0,left: 16.0,right: 16.0, bottom: 8.0),
+            child: Row(
+              children: <Widget>[
+                Text(suggestion.value, style: Theme.of(context).textTheme.subhead,),
+                Padding(
+                  padding: EdgeInsets.only(left: 16.0),
+                  child: suggestion.suggestionCategories.length > 0
+                      ? Text("en " + suggestion.suggestionCategories[0].display,
+                          style: Theme.of(context).textTheme.caption)
+                      : Column(),
+                )
+              ],
+            ),
+          ),
+        );
   }
 }

@@ -34,6 +34,7 @@ class SuggestionsList extends StatelessWidget {
 
   Widget buildSuggestions(BuildContext context, List<Suggestion> suggestions) {
     return Container(
+      padding: EdgeInsets.only(top: 16.0),
       child: ListView.separated(
         separatorBuilder: (context, index) => Divider(
           color: Colors.grey,

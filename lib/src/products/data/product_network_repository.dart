@@ -4,17 +4,19 @@ import 'package:http/http.dart' as http;
 import 'package:torii_shopping/src/common/domain/page_result.dart';
 import 'package:torii_shopping/src/products/domain/entities/product.dart';
 import 'package:torii_shopping/src/products/domain/repositories/product_repository.dart';
+import 'package:torii_shopping/src/search/domain/entities/search_filter.dart';
 
 class ProductNetworkRepository implements ProductRepository {
   @override
-  Future<PageResult<Product>> getProducts(String query, int page) async {
-    return await _fetchProducts(query, page);
+  Future<PageResult<Product>> getProducts(SearchFilter searchFilter) async {
+    return await _fetchProducts(searchFilter);
   }
 
-  Future<PageResult<Product>> _fetchProducts(String query, int page) async {
+  Future<PageResult<Product>> _fetchProducts(SearchFilter searchFilter) async {
     try {
-      final response = await http.get(
-          'https://torii-shopping-api.herokuapp.com/products?q=$query&page=$page');
+      String request = _createRequest(searchFilter);
+
+      final response = await http.get(request);
 
       if (response.statusCode == 200) {
         // If server returns an OK response, parse the JSON.
@@ -28,6 +30,19 @@ class ProductNetworkRepository implements ProductRepository {
       print(e);
       throw e;
     }
+  }
+
+  String _createRequest(SearchFilter searchFilter) {
+    String request ="https://torii-shopping-api.herokuapp.com/products";
+
+    request = request + "?q=${searchFilter.query}";
+
+    request = request + "&page=${searchFilter.page}";
+
+    if (searchFilter.category.isNotEmpty){
+      request = request+ "&category=${searchFilter.category}";
+    }
+    return request;
   }
 
   PageResult<Product> _parse(Map<String, dynamic> json) {

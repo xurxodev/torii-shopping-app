@@ -4,10 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/common/blocs/BlocProvider.dart';
 import 'package:torii_shopping/src/products/presentation/widgets/product_list.dart';
+import 'package:torii_shopping/src/search/domain/entities/search_filter.dart';
 import 'package:torii_shopping/src/search/presentation/blocs/search_products_bloc.dart';
 import 'package:torii_shopping/src/suggestions/presentation/widgets/suggestions_list.dart';
 
 class SearchProductsDelegate extends SearchDelegate {
+  SearchFilter _searchFilter;
+
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -17,6 +20,7 @@ class SearchProductsDelegate extends SearchDelegate {
             : CupertinoIcons.clear_circled_solid),
         onPressed: () {
           query = '';
+          _searchFilter = new SearchFilter(query);
         },
       ),
     ];
@@ -37,7 +41,7 @@ class SearchProductsDelegate extends SearchDelegate {
     SearchProductsBloc _searchProductsBloc =
         BlocProvider.of<SearchProductsBloc>(context);
 
-    _searchProductsBloc.performSearch(query, 1);
+    _searchProductsBloc.performSearch(_searchFilter);
 
     return ProductList();
   }
@@ -47,11 +51,20 @@ class SearchProductsDelegate extends SearchDelegate {
     SearchProductsBloc _searchProductsBloc =
         BlocProvider.of<SearchProductsBloc>(context);
 
+    _searchFilter = new SearchFilter(query);
     _searchProductsBloc.query.add(query);
 
     return SuggestionsList(
       onSuggestionSelected: (s) {
         query = s.value;
+
+        String category = "";
+
+        if (s.suggestionCategories.length > 0) {
+          category = s.suggestionCategories[0].value;
+        }
+
+        _searchFilter = new SearchFilter(query, 1, category);
         this.showResults(context);
       },
     );

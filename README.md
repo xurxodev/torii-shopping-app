@@ -14,9 +14,9 @@ You can search products and navigate to shop web to buy it.
 <img width="600" alt="search-results" src="https://user-images.githubusercontent.com/5593590/65502380-fa8bd300-dec2-11e9-8bbb-fd1b476d2f78.png">
 
 ## Libraries and plugins used in this project
-[http](https://pub.dev/packages/http)
-[webview_flutter](https://pub.dev/packages/webview_flutter)
-[share](https://pub.dev/packages/share)
+* [http](https://pub.dev/packages/http)
+* [webview_flutter](https://pub.dev/packages/webview_flutter)
+* [share](https://pub.dev/packages/share)
 ## License
 
 MIT License

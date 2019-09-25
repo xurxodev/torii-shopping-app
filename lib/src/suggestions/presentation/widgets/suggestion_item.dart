@@ -15,7 +15,8 @@ class SuggestionItem extends StatelessWidget {
           onTap: onTap,
           child: Padding(
             padding: const EdgeInsets.only(top: 8.0,left: 16.0,right: 16.0, bottom: 8.0),
-            child: Row(
+            child: Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
               children: <Widget>[
                 Text(suggestion.value, style: Theme.of(context).textTheme.subhead,),
                 Padding(

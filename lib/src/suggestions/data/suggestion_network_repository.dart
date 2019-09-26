@@ -14,7 +14,7 @@ class SuggestionNetworkRepository implements SuggestionRepository {
   Future<List<Suggestion>> _fetchSuggestions(String prefix) async {
     try {
       final response = await http.get(
-          'https://torii-shopping-api.herokuapp.com/suggestions?prefix=$prefix');
+          'https://torii-shopping-api.herokuapp.com/v1/suggestions?prefix=$prefix');
 
       if (response.statusCode == 200) {
         // If server returns an OK response, parse the JSON.

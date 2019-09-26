@@ -13,7 +13,7 @@ class BannerNetworkRepository implements BannerRepository {
 
   Future<Map<String, List<Banner>>> _fetchBanners() async {
     final response =
-        await http.get('https://torii-shopping-api.herokuapp.com/banners');
+        await http.get('https://torii-shopping-api.herokuapp.com/v1/banners');
 
     if (response.statusCode == 200) {
       // If server returns an OK response, parse the JSON.

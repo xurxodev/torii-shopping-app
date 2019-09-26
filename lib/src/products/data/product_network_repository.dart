@@ -33,7 +33,7 @@ class ProductNetworkRepository implements ProductRepository {
   }
 
   String _createRequest(SearchFilter searchFilter) {
-    String request ="https://torii-shopping-api.herokuapp.com/products";
+    String request ="https://torii-shopping-api.herokuapp.com/v1/products";
 
     request = request + "?q=${searchFilter.query}";
 

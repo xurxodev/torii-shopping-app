@@ -45,25 +45,29 @@ class SearchProductsBloc implements BlocBase {
         _state = ProductsResultState.empty();
       }
 
-      var productsPage = await _getProductsUseCase.execute(searchFilter);
+      _getProductsUseCase.execute(searchFilter)
+          .then((productsPage) {
+        var totalItems = new List<Product>();
+        totalItems.addAll(_state.result.items);
+        totalItems.addAll(productsPage.items);
 
-      var totalItems = new List<Product>();
-      totalItems.addAll(_state.result.items);
-      totalItems.addAll(productsPage.items);
+        _state = new ProductsResultState(false,
+            PageResult(totalItems, productsPage.page, productsPage.totalPages));
 
-      _state = new ProductsResultState(false,
-          PageResult(totalItems, productsPage.page, productsPage.totalPages));
+        _resultsController.sink.add(_state);
 
-      _resultsController.sink.add(_state);
-
-      _searching = false;
+        _searching = false;
+      }).catchError((error) {
+        _searching = false;
+        _suggestionsController.sink.addError(error);
+      });
     }
   }
 
   void loadSuggestions(String prefix) async {
-    final suggestions = await _getSuggestionsUseCase.execute(prefix);
-
-    _suggestionsController.sink.add(suggestions);
+    _getSuggestionsUseCase.execute(prefix)
+        .then((suggestions) => _suggestionsController.sink.add(suggestions))
+        .catchError((error) => _suggestionsController.sink.addError(error));
   }
 
   @override

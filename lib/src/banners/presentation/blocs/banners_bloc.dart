@@ -15,9 +15,9 @@ class BannersBloc implements BlocBase{
   }
 
   init() async {
-    var banners = await _getBannersUseCase.execute();
-
-    _bannersController.sink.add(banners);
+    _getBannersUseCase.execute()
+    .then((banners) => _bannersController.sink.add(banners))
+    .catchError((error) => _bannersController.sink.addError(error));
   }
 
   @override

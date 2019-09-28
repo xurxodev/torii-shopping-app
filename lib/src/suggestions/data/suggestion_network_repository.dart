@@ -1,11 +1,12 @@
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
+import 'package:torii_shopping/src/common/data/api_resository.dart';
 import 'package:torii_shopping/src/suggestions/domain/entities/suggestion.dart';
 import 'package:torii_shopping/src/suggestions/domain/entities/suggestion_category.dart';
 import 'package:torii_shopping/src/suggestions/domain/repositories/suggestion_repository.dart';
 
-class SuggestionNetworkRepository implements SuggestionRepository {
+class SuggestionNetworkRepository extends ApiRepository
+    implements SuggestionRepository {
   @override
   Future<List<Suggestion>> getSuggestions(String prefix) async {
     return await _fetchSuggestions(prefix);
@@ -13,8 +14,7 @@ class SuggestionNetworkRepository implements SuggestionRepository {
 
   Future<List<Suggestion>> _fetchSuggestions(String prefix) async {
     try {
-      final response = await http.get(
-          'https://torii-shopping-api.herokuapp.com/v1/suggestions?prefix=$prefix');
+      final response = await super.get('/suggestions?prefix=$prefix');
 
       if (response.statusCode == 200) {
         // If server returns an OK response, parse the JSON.

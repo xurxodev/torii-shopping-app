@@ -31,7 +31,7 @@ class BannerList extends StatelessWidget {
 
     bannerGroups.forEach((group, banners) => {
           children.add(ListTile(
-            title: Text(group, style: Theme.of(context).textTheme.title),
+            title: Text(translateGroup(group), style: Theme.of(context).textTheme.title),
           )),
           children.add(
             Padding(
@@ -56,5 +56,15 @@ class BannerList extends StatelessWidget {
         });
 
     return ListView(scrollDirection: Axis.vertical, children: children);
+  }
+}
+
+String translateGroup(String group) {
+  if (group == "Services"){
+    return "Servicios";
+  } else if (group == "Deals"){
+    return "Ofertas";
+  }else {
+    return "Productos";
   }
 }

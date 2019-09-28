@@ -1,12 +1,13 @@
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
+import 'package:torii_shopping/src/common/data/api_resository.dart';
 import 'package:torii_shopping/src/common/domain/page_result.dart';
 import 'package:torii_shopping/src/products/domain/entities/product.dart';
 import 'package:torii_shopping/src/products/domain/repositories/product_repository.dart';
 import 'package:torii_shopping/src/search/domain/entities/search_filter.dart';
 
-class ProductNetworkRepository implements ProductRepository {
+class ProductNetworkRepository extends ApiRepository
+    implements ProductRepository {
   @override
   Future<PageResult<Product>> getProducts(SearchFilter searchFilter) async {
     return await _fetchProducts(searchFilter);
@@ -16,7 +17,7 @@ class ProductNetworkRepository implements ProductRepository {
     try {
       String request = _createRequest(searchFilter);
 
-      final response = await http.get(request);
+      final response = await super.get(request);
 
       if (response.statusCode == 200) {
         // If server returns an OK response, parse the JSON.
@@ -33,14 +34,14 @@ class ProductNetworkRepository implements ProductRepository {
   }
 
   String _createRequest(SearchFilter searchFilter) {
-    String request ="https://torii-shopping-api.herokuapp.com/v1/products";
+    String request = "/products";
 
     request = request + "?q=${searchFilter.query}";
 
     request = request + "&page=${searchFilter.page}";
 
-    if (searchFilter.category.isNotEmpty){
-      request = request+ "&category=${searchFilter.category}";
+    if (searchFilter.category.isNotEmpty) {
+      request = request + "&category=${searchFilter.category}";
     }
     return request;
   }

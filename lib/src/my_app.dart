@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: ToriiColors.transparent,
-          accentColor: Colors.blueAccent),
+          accentColor: Colors.blueAccent,
+      primaryIconTheme: IconThemeData(color: Colors.blue)),
       home: HomeScreen(),
     );
 

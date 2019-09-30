@@ -11,8 +11,27 @@ import 'package:torii_shopping/src/suggestions/presentation/widgets/suggestions_
 class SearchProductsDelegate extends SearchDelegate {
   SearchFilter _searchFilter;
 
+
+  SearchProductsDelegate():
+    super(searchFieldLabel: "Busca productos"){}
+
+
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+      assert(context != null);
+      final ThemeData theme = Theme.of(context);
+      assert(theme != null);
+      return theme.copyWith(
+        primaryColor: Colors.white,
+        primaryIconTheme: theme.primaryIconTheme.copyWith(color: Colors.blue),
+        primaryColorBrightness: Brightness.light,
+        primaryTextTheme: theme.textTheme,
+      );
+  }
+
   @override
   List<Widget> buildActions(BuildContext context) {
+
     return [
       IconButton(
         icon: Icon(Platform.isAndroid

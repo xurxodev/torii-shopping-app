@@ -17,7 +17,7 @@ class SearchBox extends StatelessWidget {
           decoration: InputDecoration(
               filled: true,
               fillColor: Colors.white,
-              hintText: "Search poducts",
+              hintText: "Busca productos",
               contentPadding: EdgeInsets.only(top: 16.0),
               prefixIcon: Icon(Icons.search, color: Colors.grey),
               border: InputBorder.none,

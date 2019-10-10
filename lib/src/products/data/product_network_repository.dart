@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:torii_shopping/src/common/data/api_resository.dart';
 import 'package:torii_shopping/src/common/domain/page_result.dart';
 import 'package:torii_shopping/src/products/domain/entities/product.dart';
+import 'package:torii_shopping/src/products/domain/entities/productPrice.dart';
 import 'package:torii_shopping/src/products/domain/repositories/product_repository.dart';
 import 'package:torii_shopping/src/search/domain/entities/search_filter.dart';
 
@@ -56,10 +57,17 @@ class ProductNetworkRepository extends ApiRepository
 
   Product _parseProduct(Map<String, dynamic> json) {
     List<String> images = new List<String>();
+    List<ProductPrice> prices = new List<ProductPrice>();
 
     (json['images'] as List).forEach((i) => images.add(i));
+    (json['prices'] as List).forEach((price) => prices.add(_parsePrice(price)));
 
     return new Product(json['asin'], json['description'], json['ean'], images,
-        json['name'], json['upc'], json['url']);
+        json['name'], json['upc'], json['url'],prices);
+  }
+
+  ProductPrice _parsePrice(Map<String, dynamic> json) {
+    return new ProductPrice(json['store'], json['storeImage'], json['url'],
+        json['price'], json['currency']);
   }
 }

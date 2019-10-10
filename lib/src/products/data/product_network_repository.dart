@@ -14,6 +14,11 @@ class ProductNetworkRepository extends ApiRepository
     return await _fetchProducts(searchFilter);
   }
 
+  @override
+  Future<Product> getProductByAsin(String asin) async {
+    return await _fetchProductByAsin(asin);
+  }
+
   Future<PageResult<Product>> _fetchProducts(SearchFilter searchFilter) async {
     try {
       String request = _createRequest(searchFilter);
@@ -24,6 +29,26 @@ class ProductNetworkRepository extends ApiRepository
         // If server returns an OK response, parse the JSON.
         final decodedJson = json.decode(response.body);
         return _parse(decodedJson);
+      } else {
+        // If that response was not OK, throw an error.
+        throw Exception('Failed to load post');
+      }
+    } on Exception catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  Future<Product> _fetchProductByAsin(String asin) async {
+    try {
+      String request = "/products/$asin";
+
+      final response = await super.get(request);
+
+      if (response.statusCode == 200) {
+        // If server returns an OK response, parse the JSON.
+        final decodedJson = json.decode(response.body);
+        return _parseProduct(decodedJson);
       } else {
         // If that response was not OK, throw an error.
         throw Exception('Failed to load post');

@@ -1,31 +1,64 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
+import 'package:torii_shopping/src/common/blocs/BlocProvider.dart';
 import 'package:torii_shopping/src/common/torii_colors.dart';
 import 'package:torii_shopping/src/products/domain/entities/product.dart';
+import 'package:torii_shopping/src/products/presentation/blocs/product_bloc.dart';
 import 'package:torii_shopping/src/products/presentation/widgets/product_prices_list.dart';
 
 class ProductScreen extends StatelessWidget {
-  final Product product;
+  Product initialData;
 
-  const ProductScreen({Key key, this.product}) : super(key: key);
+  ProductScreen(this.initialData);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(child: _content(context)),
+    ProductBloc bloc = BlocProvider.of<ProductBloc>(context);
+    Widget content;
+
+    return StreamBuilder<Product>(
+      initialData: initialData,
+      stream: bloc.product,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          content = _content(context, snapshot.data);
+        } else if (snapshot.hasError) {
+          content = Text(
+            "${snapshot.error}",
+            overflow: TextOverflow.ellipsis,
+          );
+        }
+
+        return Scaffold(
+          backgroundColor: Colors.white,
+          body: SafeArea(child: content),
+        );
+      },
     );
   }
 
-  Widget _content(BuildContext context) {
+  Widget _content(BuildContext context, Product product) {
+    Widget _content;
+
     if (MediaQuery.of(context).orientation == Orientation.portrait) {
-      return Column(children: <Widget>[_header(context), _body(context)]);
+      _content = Column(children: <Widget>[
+        _header(context, product),
+        _body(context, product)
+      ]);
     } else {
-      return Row(children: <Widget>[_header(context), _body(context)]);
+      _content = Row(children: <Widget>[
+        _header(context, product),
+        _body(context, product)
+      ]);
     }
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(child: _content),
+    );
   }
 
-  Widget _header(BuildContext context) {
+  Widget _header(BuildContext context, Product product) {
     return Expanded(
         child: Stack(
       children: <Widget>[
@@ -33,7 +66,7 @@ class ProductScreen extends StatelessWidget {
             child: Container(
           margin: EdgeInsets.all(30.0),
           child: Hero(
-            tag: product.images[0],
+            tag: product.name,
             child: Carousel(
                 boxFit: BoxFit.scaleDown,
                 dotBgColor: Colors.transparent,
@@ -60,7 +93,7 @@ class ProductScreen extends StatelessWidget {
     ));
   }
 
-  Widget _body(BuildContext context) {
+  Widget _body(BuildContext context, Product product) {
     const padding = 25.0;
 
     return Expanded(

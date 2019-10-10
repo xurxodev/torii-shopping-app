@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       home: HomeScreen(),
     );
 
-    //SearchProductsBloc is initilized here because my app
+    //SearchProductsBloc is initialized here because my app
     //of my widgets tree  is the unique parent for for SearchDelegate
     return BlocProvider<SearchProductsBloc>(
       bloc: DependenciesProvider.provideSearchProductsBloc(),

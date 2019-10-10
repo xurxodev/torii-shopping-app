@@ -6,4 +6,5 @@ import '../entities/product.dart';
 class ProductRepository{
   // ignore: missing_return
   Future<PageResult<Product>> getProducts(SearchFilter searchFilter){}
+  Future<Product> getProductByAsin(String asin){}
 }

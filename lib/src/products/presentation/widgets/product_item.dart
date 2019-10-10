@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/Browser/presentation/screens/browser_screen.dart';
+import 'package:torii_shopping/src/common/blocs/BlocProvider.dart';
+import 'package:torii_shopping/src/common/di/depdendencies_provider.dart';
 import 'package:torii_shopping/src/products/domain/entities/product.dart';
+import 'package:torii_shopping/src/products/presentation/blocs/product_bloc.dart';
 import 'package:torii_shopping/src/products/presentation/screens/product_screen.dart';
 
 class ProductItem extends StatelessWidget {
@@ -12,14 +15,16 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return new GestureDetector(
       onTap: () {
+        final screen = BlocProvider<ProductBloc>(
+          bloc: DependenciesProvider.provideProductBloc(product),
+          child: ProductScreen(product),
+        );
+
         Navigator.push(
           context,
           MaterialPageRoute(
-            //builder: (context) => BrowserScreen(url: product.url),
-            builder: (context) => ProductScreen(
-              product: product,
-            ),
-          ),
+              //builder: (context) => BrowserScreen(url: product.url),
+              builder: (context) => screen),
         );
       },
       child: Container(
@@ -28,7 +33,7 @@ class ProductItem extends StatelessWidget {
           children: <Widget>[
             product.images.length > 0
                 ? Hero(
-                    tag: product.images[0],
+                    tag: product.name,
                     child: Image.network(
                       product.images[0],
                       fit: BoxFit.contain,

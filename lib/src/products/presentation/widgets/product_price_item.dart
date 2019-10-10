@@ -9,31 +9,34 @@ class ProductPriceItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> _priceContent = [Image.network(productPrice.storeImage)];
+
+    if (productPrice.price.isNotEmpty) {
+      _priceContent.add(Text(
+        "${productPrice.price} €",
+        style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+      ));
+    }
+
     return new GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => BrowserScreen(url: productPrice.url),
-          ),
-        );
-      },
-      child: Container(
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(
-                Radius.circular(20),
-              )),
-          padding: EdgeInsets.all(16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Image.network(productPrice.storeImage),
-              Text("${productPrice.price} €",
-                  style:
-                  TextStyle(fontSize: 21, fontWeight: FontWeight.bold)),
-            ],
-          ))
-    );
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BrowserScreen(url: productPrice.url),
+            ),
+          );
+        },
+        child: Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20),
+                )),
+            padding: EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: _priceContent,
+            )));
   }
 }

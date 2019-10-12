@@ -72,3 +72,6 @@
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 
 /assets/credentials.json
+/ios/Flutter/flutter_export_environment.sh
+/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist

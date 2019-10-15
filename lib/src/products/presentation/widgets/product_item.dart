@@ -14,43 +14,44 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new GestureDetector(
-      onTap: () {
-        final screen = BlocProvider<ProductBloc>(
-          bloc: DependenciesProvider.provideProductBloc(product),
-          child: ProductScreen(product),
-        );
+        onTap: () {
+          final screen = BlocProvider<ProductBloc>(
+            bloc: DependenciesProvider.provideProductBloc(product),
+            child: ProductScreen(product),
+          );
 
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              //builder: (context) => BrowserScreen(url: product.url),
-              builder: (context) => screen),
-        );
-      },
-      child: Container(
-        padding: EdgeInsets.all(8.0),
-        child: Row(
-          children: <Widget>[
-            product.images.length > 0
-                ? Hero(
-                    tag: product.name,
-                    child: Image.network(
-                      product.images[0],
-                      fit: BoxFit.contain,
-                      height: 125,
-                      width: 125,
-                    ))
-                : Column(),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text(product.name,
-                    style: Theme.of(context).textTheme.title),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                //builder: (context) => BrowserScreen(url: product.url),
+                builder: (context) => screen),
+          );
+        },
+        child: SafeArea(
+          child: Container(
+            padding: EdgeInsets.all(8.0),
+            child: Row(
+              children: <Widget>[
+                product.images.length > 0
+                    ? Hero(
+                        tag: product.name,
+                        child: Image.network(
+                          product.images[0],
+                          fit: BoxFit.contain,
+                          height: 125,
+                          width: 125,
+                        ))
+                    : Column(),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text(product.name,
+                        style: Theme.of(context).textTheme.title),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ));
   }
 }

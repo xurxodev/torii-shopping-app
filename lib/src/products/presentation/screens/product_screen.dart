@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/common/blocs/BlocProvider.dart';
 import 'package:torii_shopping/src/common/torii_colors.dart';
@@ -84,7 +87,7 @@ class ProductScreen extends StatelessWidget {
           alignment: Alignment.topLeft,
           child: IconButton(
             icon: Icon(
-              Icons.arrow_back,
+              Platform.isAndroid ? Icons.arrow_back : CupertinoIcons.back,
               color: Colors.blue,
             ),
             onPressed: () => Navigator.pop(context),
@@ -99,8 +102,7 @@ class ProductScreen extends StatelessWidget {
 
     return Expanded(
         child: Container(
-      padding: EdgeInsets.only(
-         left: padding, right: padding, bottom: padding),
+      padding: EdgeInsets.only(left: padding, right: padding, bottom: padding),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(

@@ -10,10 +10,10 @@ class SearchBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(16.0),
-      child: SizedBox(
-        height: 40.0,
-        child: TextField(
+      height: 40.0,
+      padding: EdgeInsets.only(left: 16.0, right: 16.0),
+      child: TextField(
+          enableInteractiveSelection: false,
           decoration: InputDecoration(
               filled: true,
               fillColor: Colors.white,
@@ -23,12 +23,10 @@ class SearchBox extends StatelessWidget {
               border: InputBorder.none,
               enabledBorder: _border,
               focusedBorder: _border),
-          onTap: () =>
-              showSearch(context: context, delegate: SearchProductsDelegate())
-
-          ,
-        ),
-      ),
+          onTap: () => showSearch(
+                context: context,
+                delegate: SearchProductsDelegate(),
+              )),
     );
   }
 }

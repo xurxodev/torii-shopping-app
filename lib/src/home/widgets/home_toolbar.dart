@@ -8,10 +8,12 @@ class HomeToolbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150.0,
-      padding: EdgeInsets.only(top: 48.0),
+      alignment: Alignment.center,
+      height: 170.0,
       decoration: BoxDecoration(gradient: ToriiColors.backgroundGradient),
-      child: Column(
+      child: SafeArea(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           SizedBox(
             height: 30.0,
@@ -20,16 +22,21 @@ class HomeToolbar extends StatelessWidget {
               children: <Widget>[
                 Text(
                   "Torii Shopping",
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: Theme.of(context).textTheme.title.fontSize),
                 ),
-                Image.asset('assets/icons/ic_torii_shopping.png')
+                Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: Image.asset('assets/icons/ic_torii_shopping.png'),
+                )
               ],
             ),
           ),
           //SizedBox(height: 70.0),
           SearchBox()
         ],
-      ),
+      )),
     );
   }
 }

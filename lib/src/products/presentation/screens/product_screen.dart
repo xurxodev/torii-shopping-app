@@ -31,7 +31,7 @@ class ProductScreen extends StatelessWidget {
 
         return Scaffold(
           backgroundColor: Colors.white,
-          body: SafeArea(child: content),
+          body: content,
         );
       },
     );
@@ -54,17 +54,18 @@ class ProductScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(child: _content),
+      body: _content,
     );
   }
 
   Widget _header(BuildContext context, Product product) {
     return Expanded(
-        child: Stack(
+        child: SafeArea(
+            child: Stack(
       children: <Widget>[
         Positioned.fill(
             child: Container(
-          margin: EdgeInsets.all(30.0),
+          margin: EdgeInsets.all(16.0),
           child: Hero(
             tag: product.name,
             child: Carousel(
@@ -72,7 +73,7 @@ class ProductScreen extends StatelessWidget {
                 dotBgColor: Colors.transparent,
                 dotIncreasedColor: Colors.lightBlueAccent,
                 dotColor: Colors.blue,
-                dotVerticalPadding: -20,
+                //dotVerticalPadding: -20,
                 autoplay: false,
                 images: product.images
                     .map((image) => NetworkImage(image))
@@ -90,28 +91,30 @@ class ProductScreen extends StatelessWidget {
           ),
         )
       ],
-    ));
+    )));
   }
 
   Widget _body(BuildContext context, Product product) {
     const padding = 25.0;
 
     return Expanded(
-      child: Container(
-        padding: EdgeInsets.only(
-            top: padding, left: padding, right: padding, bottom: padding),
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              offset: Offset(0, -5),
-              blurRadius: 5,
-              color: Colors.black26,
-            )
-          ],
-          borderRadius: _bodyBorderRadius(context),
-          gradient: ToriiColors.backgroundGradient,
-        ),
+        child: Container(
+      padding: EdgeInsets.only(
+         left: padding, right: padding, bottom: padding),
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            offset: Offset(0, -5),
+            blurRadius: 5,
+            color: Colors.black26,
+          )
+        ],
+        borderRadius: _bodyBorderRadius(context),
+        gradient: ToriiColors.backgroundGradient,
+      ),
+      child: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 16.0, bottom: 32.0),
@@ -124,7 +127,7 @@ class ProductScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 
   BorderRadius _bodyBorderRadius(BuildContext context) {

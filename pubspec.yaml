@@ -47,7 +47,7 @@ flutter:
 
   assets:
     - assets/icons/ic_torii_shopping.png
-    - assets/images/orange.png
+    - assets/images/
     - assets/credentials.json
 
   # An image asset can refer to one or more resolution-specific "variants", see

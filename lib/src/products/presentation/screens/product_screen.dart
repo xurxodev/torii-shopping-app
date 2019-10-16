@@ -72,6 +72,7 @@ class ProductScreen extends StatelessWidget {
           child: Hero(
             tag: product.name,
             child: Carousel(
+                defaultImage: Image.asset('assets/images/empty_image.png'),
                 boxFit: BoxFit.scaleDown,
                 dotBgColor: Colors.transparent,
                 dotIncreasedColor: Colors.lightBlueAccent,

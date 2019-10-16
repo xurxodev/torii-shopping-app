@@ -13,6 +13,8 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size =  125.0;
+
     return new GestureDetector(
         onTap: () {
           final screen = BlocProvider<ProductBloc>(
@@ -32,16 +34,21 @@ class ProductItem extends StatelessWidget {
             padding: EdgeInsets.all(8.0),
             child: Row(
               children: <Widget>[
-                product.images.length > 0
-                    ? Hero(
-                        tag: product.name,
-                        child: Image.network(
+                Hero(
+                  tag: product.name,
+                  child: product.images.length > 0
+                      ? Image.network(
                           product.images[0],
                           fit: BoxFit.contain,
-                          height: 125,
-                          width: 125,
-                        ))
-                    : Column(),
+                          height: size,
+                          width: size,
+                        )
+                      : Image.asset(
+                          'assets/images/empty_image.png',
+                          height: size,
+                          width: size,
+                        ),
+                ),
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.all(16.0),

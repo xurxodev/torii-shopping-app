@@ -76,9 +76,9 @@ class ProductScreen extends StatelessWidget {
                 dotBgColor: Colors.transparent,
                 dotIncreasedColor: Colors.lightBlueAccent,
                 dotColor: Colors.blue,
-                //dotVerticalPadding: -20,
+                dotSpacing: 20,
                 autoplay: false,
-                images: product.images
+                images: product.images.take(10)
                     .map((image) => NetworkImage(image))
                     .toList()),
           ),

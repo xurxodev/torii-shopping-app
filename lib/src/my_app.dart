@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'common/blocs/BlocProvider.dart';
 import 'common/di/depdendencies_provider.dart';
+import 'common/presentation/blocs/BlocProvider.dart';
 import 'common/torii_colors.dart';
 import 'home/screens/home_screen.dart';
 import 'search/presentation/blocs/search_products_bloc.dart';

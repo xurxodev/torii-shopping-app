@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:torii_shopping/src/Browser/presentation/screens/browser_screen.dart';
-import 'package:torii_shopping/src/common/blocs/BlocProvider.dart';
 import 'package:torii_shopping/src/common/di/depdendencies_provider.dart';
+import 'package:torii_shopping/src/common/presentation/blocs/BlocProvider.dart';
 import 'package:torii_shopping/src/products/domain/entities/product.dart';
 import 'package:torii_shopping/src/products/presentation/blocs/product_bloc.dart';
 import 'package:torii_shopping/src/products/presentation/screens/product_screen.dart';

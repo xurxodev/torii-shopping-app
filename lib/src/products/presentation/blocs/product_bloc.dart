@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:torii_shopping/src/common/blocs/bloc_base.dart';
+import 'package:torii_shopping/src/common/presentation/blocs/bloc_base.dart';
 import 'package:torii_shopping/src/products/domain/entities/product.dart';
 import 'package:torii_shopping/src/products/domain/usecases/get_product.dart';
 

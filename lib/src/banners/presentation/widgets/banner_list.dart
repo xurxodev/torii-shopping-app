@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/banners/domain/banner.dart' as MyBanner;
 import 'package:torii_shopping/src/banners/presentation/blocs/banners_bloc.dart';
-import 'package:torii_shopping/src/common/blocs/BlocProvider.dart';
+import 'package:torii_shopping/src/common/presentation/blocs/BlocProvider.dart';
+import 'package:torii_shopping/src/common/presentation/snackbar.dart';
 import 'banner_item.dart';
 
 class BannerList extends StatelessWidget {
@@ -15,11 +16,12 @@ class BannerList extends StatelessWidget {
         if (snapshot.hasData) {
           return buildBannerGroups(context, snapshot.data);
         } else if (snapshot.hasError) {
-          return Text("${snapshot.error}");
+          showSnackBarPostFrame(context, snapshot.error.toString());
+          return Container();
         }
 
         return Center(
-            child: CircularProgressIndicator(),
+          child: CircularProgressIndicator(),
         );
       },
     );
@@ -31,7 +33,8 @@ class BannerList extends StatelessWidget {
 
     bannerGroups.forEach((group, banners) => {
           children.add(ListTile(
-            title: Text(translateGroup(group), style: Theme.of(context).textTheme.title),
+            title: Text(translateGroup(group),
+                style: Theme.of(context).textTheme.title),
           )),
           children.add(
             Padding(
@@ -60,11 +63,11 @@ class BannerList extends StatelessWidget {
 }
 
 String translateGroup(String group) {
-  if (group == "Services"){
+  if (group == "Services") {
     return "Servicios";
-  } else if (group == "Deals"){
+  } else if (group == "Deals") {
     return "Ofertas";
-  }else {
+  } else {
     return "Productos";
   }
 }

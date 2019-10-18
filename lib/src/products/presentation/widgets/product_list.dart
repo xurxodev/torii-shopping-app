@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:torii_shopping/src/common/blocs/BlocProvider.dart';
+import 'package:torii_shopping/src/common/presentation/blocs/BlocProvider.dart';
+import 'package:torii_shopping/src/common/presentation/snackbar.dart';
 import 'package:torii_shopping/src/products/presentation/state/products_result_state.dart';
 import 'package:torii_shopping/src/products/presentation/widgets/product_item.dart';
 import 'package:torii_shopping/src/search/presentation/blocs/search_products_bloc.dart';
@@ -30,10 +31,8 @@ class ProductList extends StatelessWidget {
         if (snapshot.hasData) {
           return buildSearchResults(context, snapshot.data);
         } else if (snapshot.hasError) {
-          return Text(
-            "${snapshot.error}",
-            overflow: TextOverflow.ellipsis,
-          );
+          showSnackBarPostFrame(context, snapshot.error.toString());
+          return Container();
         }
 
         return Center(
@@ -43,15 +42,13 @@ class ProductList extends StatelessWidget {
     );
   }
 
-  Widget buildSearchResults(BuildContext context,
-      ProductsResultState state) {
+  Widget buildSearchResults(BuildContext context, ProductsResultState state) {
     return Container(
       child: ListView.separated(
-        controller:_scrollController,
-        separatorBuilder: (context, index) =>
-            Divider(
-              color: Colors.grey,
-            ),
+        controller: _scrollController,
+        separatorBuilder: (context, index) => Divider(
+          color: Colors.grey,
+        ),
         itemCount: state.result.items.length + 1,
         itemBuilder: (context, index) {
           return buildItem(index, state);
@@ -67,8 +64,7 @@ class ProductList extends StatelessWidget {
         child: CircularProgressIndicator(),
       );
     } else if (index < state.result.items.length) {
-      return Center(
-          child: ProductItem(product: state.result.items[index]));
+      return Center(child: ProductItem(product: state.result.items[index]));
     } else {
       return Column();
     }

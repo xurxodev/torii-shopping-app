@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:torii_shopping/src/common/blocs/BlocProvider.dart';
+import 'package:torii_shopping/src/common/presentation/blocs/BlocProvider.dart';
+import 'package:torii_shopping/src/common/presentation/snackbar.dart';
 import 'package:torii_shopping/src/common/torii_colors.dart';
 import 'package:torii_shopping/src/products/domain/entities/product.dart';
 import 'package:torii_shopping/src/products/presentation/blocs/product_bloc.dart';
@@ -26,10 +27,8 @@ class ProductScreen extends StatelessWidget {
         if (snapshot.hasData) {
           content = _content(context, snapshot.data);
         } else if (snapshot.hasError) {
-          content = Text(
-            "${snapshot.error}",
-            overflow: TextOverflow.ellipsis,
-          );
+          showSnackBarPostFrame(context, snapshot.error.toString());
+          return Container();
         }
 
         return Scaffold(
@@ -79,7 +78,8 @@ class ProductScreen extends StatelessWidget {
                 dotColor: Colors.blue,
                 dotSpacing: 20,
                 autoplay: false,
-                images: product.images.take(10)
+                images: product.images
+                    .take(10)
                     .map((image) => NetworkImage(image))
                     .toList()),
           ),

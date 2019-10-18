@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:torii_shopping/src/common/blocs/BlocProvider.dart';
+import 'package:torii_shopping/src/common/presentation/blocs/BlocProvider.dart';
+import 'package:torii_shopping/src/common/presentation/snackbar.dart';
 import 'package:torii_shopping/src/search/presentation/blocs/search_products_bloc.dart';
 import 'package:torii_shopping/src/suggestions/domain/entities/suggestion.dart';
 import 'package:torii_shopping/src/suggestions/presentation/widgets/suggestion_item.dart';
@@ -21,10 +22,8 @@ class SuggestionsList extends StatelessWidget {
         if (snapshot.hasData) {
           return buildSuggestions(context, snapshot.data);
         } else if (snapshot.hasError) {
-          return Text(
-            "${snapshot.error}",
-            overflow: TextOverflow.ellipsis,
-          );
+          showSnackBarPostFrame(context, snapshot.error.toString());
+          return Container();
         }
 
         return Column();
@@ -43,7 +42,7 @@ class SuggestionsList extends StatelessWidget {
         itemBuilder: (context, index) {
           return SuggestionItem(
             suggestion: suggestions[index],
-            onTap: ()=> onSuggestionSelected(suggestions[index]),
+            onTap: () => onSuggestionSelected(suggestions[index]),
           );
         },
       ),

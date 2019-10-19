@@ -1,7 +1,6 @@
+import 'package:torii_shopping/src/banners/domain/entities/banner_group.dart';
 
-import '../banner.dart';
-
-class BannerRepository{
+class BannerRepository {
   // ignore: missing_return
-  Future<Map<String, List<Banner>>> getBanners(){}
+  Future<List<BannerGroup>> getBanners() {}
 }

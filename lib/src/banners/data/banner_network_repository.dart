@@ -1,18 +1,19 @@
-import 'dart:collection';
 import 'dart:convert';
 
-import 'package:torii_shopping/src/banners/domain/banner.dart';
+import 'package:torii_shopping/src/banners/domain/entities/banner.dart';
+import 'package:torii_shopping/src/banners/domain/entities/banner_group.dart';
+import 'package:torii_shopping/src/banners/domain/entities/banner_group_type.dart';
 import 'package:torii_shopping/src/banners/domain/repositories/banner_repository.dart';
 import 'package:torii_shopping/src/common/data/api_resository.dart';
 
 class BannerNetworkRepository extends ApiRepository
     implements BannerRepository {
   @override
-  Future<Map<String, List<Banner>>> getBanners() async {
+  Future<List<BannerGroup>> getBanners() async {
     return await _fetchBanners();
   }
 
-  Future<Map<String, List<Banner>>> _fetchBanners() async {
+  Future<List<BannerGroup>> _fetchBanners() async {
     final response = await super.get('/banners');
 
     if (response.statusCode == 200) {
@@ -24,27 +25,37 @@ class BannerNetworkRepository extends ApiRepository
     }
   }
 
-  Map<String, List<Banner>> _parse(Map<String, dynamic> json) {
-    Map<String, List<Banner>> bannersMap =
-        new LinkedHashMap<String, List<Banner>>();
+  List<BannerGroup> _parse(List<dynamic> json) {
+    List<BannerGroup> bannerGroups = new List<BannerGroup>();
 
-    var services = json['Services'] as List;
-    var deals = json['Deals'] as List;
-    var products = json['Products'] as List;
+    json.forEach((groupJson) {
+      BannerGroup bannerGroup = _parseBannerGroup(groupJson);
+      bannerGroups.add(bannerGroup);
+    });
 
-    List<Banner> serviceBanners = services.map((i) => _parseBanner(i)).toList();
-    List<Banner> dealsBanners = deals.map((i) => _parseBanner(i)).toList();
-    List<Banner> productsBanners =
-        products.map((i) => _parseBanner(i)).toList();
+    return bannerGroups;
+  }
 
-    bannersMap["Services"] = serviceBanners;
-    bannersMap["Deals"] = dealsBanners;
-    bannersMap["Products"] = productsBanners;
+  BannerGroup _parseBannerGroup(Map<String, dynamic> json) {
+    List<Banner> banners = new List<Banner>();
 
-    return bannersMap;
+    json['banners'].forEach((bannerJson) {
+      Banner banner = _parseBanner(bannerJson);
+      banners.add(banner);
+    });
+
+    return new BannerGroup(
+        json['name'], _parseBannerGroupType(json['type']), banners);
   }
 
   Banner _parseBanner(Map<String, dynamic> json) {
     return new Banner(json['imageUrl'], json['linkUrl']);
+  }
+
+  BannerGroupType _parseBannerGroupType(String type) {
+    BannerGroupType bannerGroupType = BannerGroupType.values.firstWhere(
+        (e) => e.toString().toLowerCase().contains(type.toLowerCase()));
+
+    return bannerGroupType;
   }
 }

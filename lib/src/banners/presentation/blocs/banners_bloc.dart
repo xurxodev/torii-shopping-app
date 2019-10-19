@@ -1,14 +1,14 @@
 import 'dart:async';
 
-import 'package:torii_shopping/src/banners/domain/banner.dart';
+import 'package:torii_shopping/src/banners/domain/entities/banner_group.dart';
 import 'package:torii_shopping/src/banners/domain/usecases/get_banners.dart';
 import 'package:torii_shopping/src/common/presentation/blocs/bloc_base.dart';
 
 class BannersBloc implements BlocBase{
   GetBannersUseCase _getBannersUseCase;
 
-  final _bannersController = StreamController<Map<String, List<Banner>>>();
-  Stream<Map<String, List<Banner>>> get banners => _bannersController.stream;
+  final _bannersController = StreamController<List<BannerGroup>>();
+  Stream<List<BannerGroup>> get banners => _bannersController.stream;
 
   BannersBloc(this._getBannersUseCase){
     init();

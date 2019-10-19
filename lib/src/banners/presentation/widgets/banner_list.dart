@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:torii_shopping/src/banners/domain/banner.dart' as MyBanner;
+import 'package:torii_shopping/src/banners/domain/entities/banner_group.dart';
+import 'package:torii_shopping/src/banners/domain/entities/banner_group_type.dart';
 import 'package:torii_shopping/src/banners/presentation/blocs/banners_bloc.dart';
+import 'package:torii_shopping/src/banners/presentation/widgets/list_banner_group_widget.dart';
 import 'package:torii_shopping/src/common/presentation/blocs/BlocProvider.dart';
 import 'package:torii_shopping/src/common/presentation/snackbar.dart';
-import 'banner_item.dart';
+
+import 'carousel_banner_group_widget.dart';
 
 class BannerList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final BannersBloc bloc = BlocProvider.of<BannersBloc>(context);
 
-    return StreamBuilder<Map<String, List<MyBanner.Banner>>>(
+    return StreamBuilder<List<BannerGroup>>(
       stream: bloc.banners,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
@@ -28,46 +31,20 @@ class BannerList extends StatelessWidget {
   }
 
   Widget buildBannerGroups(
-      BuildContext context, Map<String, List<MyBanner.Banner>> bannerGroups) {
+      BuildContext context, List<BannerGroup> bannerGroups) {
     List<Widget> children = new List();
 
-    bannerGroups.forEach((group, banners) => {
-          children.add(ListTile(
-            title: Text(translateGroup(group),
-                style: Theme.of(context).textTheme.title),
-          )),
-          children.add(
-            Padding(
-              padding: EdgeInsets.only(left: 16.0, right: 16.0),
-              child: SizedBox(
-                height: 200.0,
-                child: ListView(
-                  //physics: ClampingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  children: banners
-                      .map(
-                        (banner) => Padding(
-                          padding: EdgeInsets.only(left: 4, right: 4),
-                          child: BannerItem(banner: banner),
-                        ),
-                      )
-                      .toList(),
-                ),
-              ),
-            ),
-          )
+    bannerGroups.forEach((group) => {
+          if (group.type == BannerGroupType.carousel)
+            {children.add(CarouselBannerGroupWidget(bannerGroup: group))}
+          else
+            {
+              children.add(ListBannerGroupWidget(
+                  bannerGroup: group,
+                  isHorizontal: group.type == BannerGroupType.horizontalList))
+            }
         });
 
-    return ListView(scrollDirection: Axis.vertical, children: children);
-  }
-}
-
-String translateGroup(String group) {
-  if (group == "Services") {
-    return "Servicios";
-  } else if (group == "Deals") {
-    return "Ofertas";
-  } else {
-    return "Productos";
+    return ListView(padding:EdgeInsets.all(0),scrollDirection: Axis.vertical, children: children);
   }
 }

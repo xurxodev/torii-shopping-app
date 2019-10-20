@@ -14,7 +14,6 @@ class CarouselBannerGroupWidget extends StatelessWidget {
     return SizedBox(
         height: 200.0,
         child: Carousel(
-            boxFit: BoxFit.fill,
             dotBgColor: Colors.transparent,
             dotIncreasedColor: Colors.lightBlueAccent,
             dotColor: Colors.blue,

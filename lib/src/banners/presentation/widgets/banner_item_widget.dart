@@ -33,7 +33,7 @@ class BannerItemWidget extends StatelessWidget {
               borderRadius: borderRadius,
               child: Image.network(
                 banner.imageUrl,
-                fit: BoxFit.fitHeight,
+                fit: BoxFit.fill,
               ),
             )));
   }

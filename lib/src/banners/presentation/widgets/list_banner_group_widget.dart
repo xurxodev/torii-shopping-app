@@ -30,6 +30,7 @@ class ListBannerGroupWidget extends StatelessWidget {
                               child: BannerItem(
                                 banner: banner,
                                 borderRadius: BorderRadius.circular(20.0),
+                                padding: EdgeInsets.all(2.0),
                               ),
                             ))
                         .toList())))

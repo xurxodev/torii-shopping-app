@@ -5,10 +5,10 @@ import 'package:torii_shopping/src/products/domain/entities/product.dart';
 import 'package:torii_shopping/src/products/presentation/blocs/product_bloc.dart';
 import 'package:torii_shopping/src/products/presentation/screens/product_screen.dart';
 
-class ProductItem extends StatelessWidget {
+class ProductItemWidget extends StatelessWidget {
   final Product product;
 
-  ProductItem({Key key, @required this.product});
+  ProductItemWidget({Key key, @required this.product});
 
   @override
   Widget build(BuildContext context) {

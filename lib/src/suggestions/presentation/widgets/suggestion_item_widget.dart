@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/suggestions/domain/entities/suggestion.dart';
 
-class SuggestionItem extends StatelessWidget {
+class SuggestionItemWidget extends StatelessWidget {
   final Suggestion suggestion;
   final GestureTapCallback onTap;
 
-  SuggestionItem({Key key, @required this.suggestion, this.onTap});
+  SuggestionItemWidget({Key key, @required this.suggestion, this.onTap});
 
   @override
   Widget build(BuildContext context) {

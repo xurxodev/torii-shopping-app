@@ -3,12 +3,12 @@ import 'package:torii_shopping/src/Browser/presentation/screens/browser_screen.d
 import 'package:torii_shopping/src/banners/domain/entities/banner.dart'
     as toriiBanner;
 
-class BannerItem extends StatelessWidget {
+class BannerItemWidget extends StatelessWidget {
   final toriiBanner.Banner banner;
   final BorderRadius borderRadius;
   final EdgeInsets padding;
 
-  BannerItem(
+  BannerItemWidget(
       {Key key,
       @required this.banner,
       this.borderRadius = BorderRadius.zero,

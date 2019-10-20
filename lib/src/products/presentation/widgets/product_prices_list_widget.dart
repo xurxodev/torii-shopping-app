@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/products/domain/entities/productPrice.dart';
-import 'package:torii_shopping/src/products/presentation/widgets/product_price_item.dart';
+import 'package:torii_shopping/src/products/presentation/widgets/product_price_item_widget.dart';
 
-class ProductPricesList extends StatelessWidget {
+class ProductPricesListWidget extends StatelessWidget {
   final List<ProductPrice> productPrices;
 
-  ProductPricesList(this.productPrices);
+  ProductPricesListWidget(this.productPrices);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class ProductPricesList extends StatelessWidget {
         itemBuilder: (context, index) {
           final productPrice = productPrices[index];
 
-          return ProductPriceItem(productPrice: productPrice);
+          return ProductPriceItemWidget(productPrice: productPrice);
         });
   }
 }

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/browser/presentation/screens/browser_screen.dart';
 import 'package:torii_shopping/src/products/domain/entities/productPrice.dart';
 
-class ProductPriceItem extends StatelessWidget {
+class ProductPriceItemWidget extends StatelessWidget {
   final ProductPrice productPrice;
 
-  ProductPriceItem({Key key, @required this.productPrice});
+  ProductPriceItemWidget({Key key, @required this.productPrice});
 
   @override
   Widget build(BuildContext context) {

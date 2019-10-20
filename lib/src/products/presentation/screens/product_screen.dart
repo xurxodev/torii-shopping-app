@@ -8,7 +8,7 @@ import 'package:torii_shopping/src/common/presentation/snackbar.dart';
 import 'package:torii_shopping/src/common/torii_colors.dart';
 import 'package:torii_shopping/src/products/domain/entities/product.dart';
 import 'package:torii_shopping/src/products/presentation/blocs/product_bloc.dart';
-import 'package:torii_shopping/src/products/presentation/widgets/product_prices_list.dart';
+import 'package:torii_shopping/src/products/presentation/widgets/product_prices_list_widget.dart';
 
 class ProductScreen extends StatelessWidget {
   Product initialData;
@@ -126,7 +126,7 @@ class ProductScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 21, color: Colors.white),
               ),
             ),
-            Expanded(child: Center(child: ProductPricesList(product.prices))),
+            Expanded(child: Center(child: ProductPricesListWidget(product.prices))),
           ],
         ),
       ),

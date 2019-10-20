@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/common/presentation/blocs/BlocProvider.dart';
 import 'package:torii_shopping/src/common/presentation/snackbar.dart';
 import 'package:torii_shopping/src/products/presentation/state/products_result_state.dart';
-import 'package:torii_shopping/src/products/presentation/widgets/product_item.dart';
+import 'package:torii_shopping/src/products/presentation/widgets/product_item_widget.dart';
 import 'package:torii_shopping/src/search/presentation/blocs/search_products_bloc.dart';
 
-class ProductList extends StatelessWidget {
+class ProductListWidget extends StatelessWidget {
   ScrollController _scrollController;
 
   SearchProductsBloc bloc;
 
-  ProductList() {
+  ProductListWidget() {
     _scrollController = new ScrollController();
 
     _scrollController.addListener(() {
@@ -64,7 +64,7 @@ class ProductList extends StatelessWidget {
         child: CircularProgressIndicator(),
       );
     } else if (index < state.result.items.length) {
-      return Center(child: ProductItem(product: state.result.items[index]));
+      return Center(child: ProductItemWidget(product: state.result.items[index]));
     } else {
       return Column();
     }

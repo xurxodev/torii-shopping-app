@@ -8,7 +8,7 @@ import 'package:torii_shopping/src/common/presentation/snackbar.dart';
 
 import 'carousel_banner_group_widget.dart';
 
-class BannerList extends StatelessWidget {
+class BannerListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final BannersBloc bloc = BlocProvider.of<BannersBloc>(context);

@@ -2,7 +2,7 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/banners/domain/entities/banner_group.dart';
 
-import 'banner_item.dart';
+import 'banner_item_widget.dart';
 
 class CarouselBannerGroupWidget extends StatelessWidget {
   final BannerGroup bannerGroup;
@@ -21,7 +21,7 @@ class CarouselBannerGroupWidget extends StatelessWidget {
             autoplay: true,
             images: bannerGroup.banners
                 .take(10)
-                .map((banner) => BannerItem(
+                .map((banner) => BannerItemWidget(
               banner: banner,
             ))
                 .toList()));

@@ -3,14 +3,14 @@ import 'package:torii_shopping/src/common/presentation/blocs/BlocProvider.dart';
 import 'package:torii_shopping/src/common/presentation/snackbar.dart';
 import 'package:torii_shopping/src/search/presentation/blocs/search_products_bloc.dart';
 import 'package:torii_shopping/src/suggestions/domain/entities/suggestion.dart';
-import 'package:torii_shopping/src/suggestions/presentation/widgets/suggestion_item.dart';
+import 'package:torii_shopping/src/suggestions/presentation/widgets/suggestion_item_widget.dart';
 
-class SuggestionsList extends StatelessWidget {
+class SuggestionsListWidget extends StatelessWidget {
   SearchProductsBloc bloc;
 
   Function(Suggestion suggestion) onSuggestionSelected;
 
-  SuggestionsList({this.onSuggestionSelected});
+  SuggestionsListWidget({this.onSuggestionSelected});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class SuggestionsList extends StatelessWidget {
         ),
         itemCount: suggestions.length,
         itemBuilder: (context, index) {
-          return SuggestionItem(
+          return SuggestionItemWidget(
             suggestion: suggestions[index],
             onTap: () => onSuggestionSelected(suggestions[index]),
           );

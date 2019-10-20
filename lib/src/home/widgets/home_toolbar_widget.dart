@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/common/torii_colors.dart';
 
-import 'search_box.dart';
+import 'search_box_widget.dart';
 
-class HomeToolbar extends StatelessWidget {
+class HomeToolbarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,7 +34,7 @@ class HomeToolbar extends StatelessWidget {
             ),
           ),
           //SizedBox(height: 70.0),
-          SearchBox()
+          SearchBoxWidget()
         ],
       )),
     );

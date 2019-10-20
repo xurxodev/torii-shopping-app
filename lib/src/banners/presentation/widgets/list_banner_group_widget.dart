@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/banners/domain/entities/banner_group.dart';
 
-import 'banner_item.dart';
+import 'banner_item_widget.dart';
 
 class ListBannerGroupWidget extends StatelessWidget {
   final BannerGroup bannerGroup;
@@ -27,7 +27,7 @@ class ListBannerGroupWidget extends StatelessWidget {
                     children: bannerGroup.banners
                         .map((banner) => Padding(
                               padding: EdgeInsets.only(left: 4, right: 4),
-                              child: BannerItem(
+                              child: BannerItemWidget(
                                 banner: banner,
                                 borderRadius: BorderRadius.circular(20.0),
                                 padding: EdgeInsets.all(2.0),

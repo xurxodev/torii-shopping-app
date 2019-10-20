@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/banners/presentation/blocs/banners_bloc.dart';
-import 'package:torii_shopping/src/banners/presentation/widgets/banner_list.dart';
+import 'package:torii_shopping/src/banners/presentation/widgets/banner_list_widget.dart';
 import 'package:torii_shopping/src/common/di/depdendencies_provider.dart';
 import 'package:torii_shopping/src/common/presentation/blocs/BlocProvider.dart';
 import 'package:torii_shopping/src/common/torii_colors.dart';
-import 'package:torii_shopping/src/home/widgets/home_toolbar.dart';
+import 'package:torii_shopping/src/home/widgets/home_toolbar_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -13,11 +13,11 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: ToriiColors.transparent,
       body: Column(
         children: <Widget>[
-          HomeToolbar(),
+          HomeToolbarWidget(),
           Expanded(
             child: BlocProvider<BannersBloc>(
               bloc: DependenciesProvider.provideBannersBloc(),
-              child: BannerList(),
+              child: BannerListWidget(),
             ),
           )
         ],

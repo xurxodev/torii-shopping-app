@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:torii_shopping/src/search/presentation/delegates/search_products_delegate.dart';
 
-class SearchBox extends StatelessWidget {
+class SearchBoxWidget extends StatelessWidget {
   static const _border = OutlineInputBorder(
       borderSide: BorderSide(color: Colors.transparent),
       borderRadius: BorderRadius.all(Radius.circular(10.0)));

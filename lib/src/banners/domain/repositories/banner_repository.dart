@@ -1,4 +1,4 @@
-import 'package:torii_shopping/src/banners/domain/entities/banner_group.dart';
+import 'package:toriishopping/src/banners/domain/entities/banner_group.dart';
 
 class BannerRepository {
   // ignore: missing_return

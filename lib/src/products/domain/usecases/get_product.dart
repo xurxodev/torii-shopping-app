@@ -1,4 +1,4 @@
-import 'package:torii_shopping/src/products/domain/repositories/product_repository.dart';
+import 'package:toriishopping/src/products/domain/repositories/product_repository.dart';
 import '../entities/product.dart';
 
 class GetProductByAsinUseCase {

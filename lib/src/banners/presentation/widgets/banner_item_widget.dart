@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:torii_shopping/src/Browser/presentation/screens/browser_screen.dart';
-import 'package:torii_shopping/src/banners/domain/entities/banner.dart'
+import 'package:toriishopping/src/Browser/presentation/screens/browser_screen.dart';
+import 'package:toriishopping/src/banners/domain/entities/banner.dart'
     as toriiBanner;
 
 class BannerItemWidget extends StatelessWidget {

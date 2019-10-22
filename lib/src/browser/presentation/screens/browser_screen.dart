@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:share/share.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+// ignore: must_be_immutable
 class BrowserScreen extends StatelessWidget {
   final String url;
   WebViewController _webViewController;

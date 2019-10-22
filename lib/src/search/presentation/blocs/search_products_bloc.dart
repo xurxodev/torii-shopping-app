@@ -1,12 +1,12 @@
 import 'dart:async';
-import 'package:torii_shopping/src/common/domain/page_result.dart';
-import 'package:torii_shopping/src/common/presentation/blocs/bloc_base.dart';
-import 'package:torii_shopping/src/products/domain/entities/product.dart';
-import 'package:torii_shopping/src/products/domain/usecases/get_products.dart';
-import 'package:torii_shopping/src/products/presentation/state/products_result_state.dart';
-import 'package:torii_shopping/src/search/domain/entities/search_filter.dart';
-import 'package:torii_shopping/src/suggestions/domain/entities/suggestion.dart';
-import 'package:torii_shopping/src/suggestions/domain/usecases/get_suggestions.dart';
+import 'package:toriishopping/src/common/domain/page_result.dart';
+import 'package:toriishopping/src/common/presentation/blocs/bloc_base.dart';
+import 'package:toriishopping/src/products/domain/entities/product.dart';
+import 'package:toriishopping/src/products/domain/usecases/get_products.dart';
+import 'package:toriishopping/src/products/presentation/state/products_result_state.dart';
+import 'package:toriishopping/src/search/domain/entities/search_filter.dart';
+import 'package:toriishopping/src/suggestions/domain/entities/suggestion.dart';
+import 'package:toriishopping/src/suggestions/domain/usecases/get_suggestions.dart';
 
 class SearchProductsBloc implements BlocBase {
   GetProductsUseCase _getProductsUseCase;

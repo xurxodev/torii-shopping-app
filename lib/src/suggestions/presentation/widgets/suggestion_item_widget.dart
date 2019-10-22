@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:torii_shopping/src/suggestions/domain/entities/suggestion.dart';
+import 'package:toriishopping/src/suggestions/domain/entities/suggestion.dart';
 
 class SuggestionItemWidget extends StatelessWidget {
   final Suggestion suggestion;

@@ -1,4 +1,4 @@
-import 'package:torii_shopping/src/suggestions/domain/repositories/suggestion_repository.dart';
+import 'package:toriishopping/src/suggestions/domain/repositories/suggestion_repository.dart';
 
 import '../entities/suggestion.dart';
 

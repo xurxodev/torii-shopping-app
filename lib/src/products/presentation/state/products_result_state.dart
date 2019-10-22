@@ -1,6 +1,5 @@
-import 'package:torii_shopping/src/common/domain/page_result.dart';
-import 'package:torii_shopping/src/products/domain/entities/product.dart';
-import 'package:torii_shopping/src/suggestions/domain/entities/suggestion.dart';
+import 'package:toriishopping/src/common/domain/page_result.dart';
+import 'package:toriishopping/src/products/domain/entities/product.dart';
 
 class ProductsResultState {
   final bool loading;

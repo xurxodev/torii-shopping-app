@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:torii_shopping/src/common/data/api_resository.dart';
-import 'package:torii_shopping/src/suggestions/domain/entities/suggestion.dart';
-import 'package:torii_shopping/src/suggestions/domain/entities/suggestion_category.dart';
-import 'package:torii_shopping/src/suggestions/domain/repositories/suggestion_repository.dart';
+import 'package:toriishopping/src/common/data/api_resository.dart';
+import 'package:toriishopping/src/suggestions/domain/entities/suggestion.dart';
+import 'package:toriishopping/src/suggestions/domain/entities/suggestion_category.dart';
+import 'package:toriishopping/src/suggestions/domain/repositories/suggestion_repository.dart';
 
 class SuggestionNetworkRepository extends ApiRepository
     implements SuggestionRepository {

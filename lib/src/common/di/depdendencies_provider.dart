@@ -1,14 +1,14 @@
-import 'package:torii_shopping/src/banners/data/banner_network_repository.dart';
-import 'package:torii_shopping/src/banners/domain/usecases/get_banners.dart';
-import 'package:torii_shopping/src/banners/presentation/blocs/banners_bloc.dart';
-import 'package:torii_shopping/src/products/data/product_network_repository.dart';
-import 'package:torii_shopping/src/products/domain/entities/product.dart';
-import 'package:torii_shopping/src/products/domain/usecases/get_product.dart';
-import 'package:torii_shopping/src/products/domain/usecases/get_products.dart';
-import 'package:torii_shopping/src/products/presentation/blocs/product_bloc.dart';
-import 'package:torii_shopping/src/search/presentation/blocs/search_products_bloc.dart';
-import 'package:torii_shopping/src/suggestions/data/suggestion_network_repository.dart';
-import 'package:torii_shopping/src/suggestions/domain/usecases/get_suggestions.dart';
+import 'package:toriishopping/src/banners/data/banner_network_repository.dart';
+import 'package:toriishopping/src/banners/domain/usecases/get_banners.dart';
+import 'package:toriishopping/src/banners/presentation/blocs/banners_bloc.dart';
+import 'package:toriishopping/src/products/data/product_network_repository.dart';
+import 'package:toriishopping/src/products/domain/entities/product.dart';
+import 'package:toriishopping/src/products/domain/usecases/get_product.dart';
+import 'package:toriishopping/src/products/domain/usecases/get_products.dart';
+import 'package:toriishopping/src/products/presentation/blocs/product_bloc.dart';
+import 'package:toriishopping/src/search/presentation/blocs/search_products_bloc.dart';
+import 'package:toriishopping/src/suggestions/data/suggestion_network_repository.dart';
+import 'package:toriishopping/src/suggestions/domain/usecases/get_suggestions.dart';
 
 class DependenciesProvider {
   static BannersBloc _bannersBloc;

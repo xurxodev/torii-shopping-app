@@ -1,6 +1,6 @@
-import 'package:torii_shopping/src/common/domain/page_result.dart';
-import 'package:torii_shopping/src/products/domain/repositories/product_repository.dart';
-import 'package:torii_shopping/src/search/domain/entities/search_filter.dart';
+import 'package:toriishopping/src/common/domain/page_result.dart';
+import 'package:toriishopping/src/products/domain/repositories/product_repository.dart';
+import 'package:toriishopping/src/search/domain/entities/search_filter.dart';
 
 import '../entities/product.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:torii_shopping/src/products/domain/entities/productPrice.dart';
-import 'package:torii_shopping/src/products/presentation/widgets/product_price_item_widget.dart';
+import 'package:toriishopping/src/products/domain/entities/productPrice.dart';
+import 'package:toriishopping/src/products/presentation/widgets/product_price_item_widget.dart';
 
 class ProductPricesListWidget extends StatelessWidget {
   final List<ProductPrice> productPrices;

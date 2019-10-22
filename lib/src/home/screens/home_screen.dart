@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:torii_shopping/src/banners/presentation/blocs/banners_bloc.dart';
-import 'package:torii_shopping/src/banners/presentation/widgets/banner_list_widget.dart';
-import 'package:torii_shopping/src/common/di/depdendencies_provider.dart';
-import 'package:torii_shopping/src/common/presentation/blocs/BlocProvider.dart';
-import 'package:torii_shopping/src/common/torii_colors.dart';
-import 'package:torii_shopping/src/home/widgets/home_toolbar_widget.dart';
+import 'package:toriishopping/src/banners/presentation/blocs/banners_bloc.dart';
+import 'package:toriishopping/src/banners/presentation/widgets/banner_list_widget.dart';
+import 'package:toriishopping/src/common/di/depdendencies_provider.dart';
+import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
+import 'package:toriishopping/src/common/torii_colors.dart';
+import 'package:toriishopping/src/home/widgets/home_toolbar_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:torii_shopping/src/common/torii_colors.dart';
+import 'package:toriishopping/src/common/torii_colors.dart';
 
 import 'search_box_widget.dart';
 

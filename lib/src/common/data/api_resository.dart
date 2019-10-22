@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:torii_shopping/src/common/auth/api_credentials_loader.dart';
+import 'package:toriishopping/src/common/auth/api_credentials_loader.dart';
 
 abstract class ApiRepository {
 

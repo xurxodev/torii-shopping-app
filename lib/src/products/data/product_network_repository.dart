@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:torii_shopping/src/common/data/api_resository.dart';
-import 'package:torii_shopping/src/common/domain/page_result.dart';
-import 'package:torii_shopping/src/products/domain/entities/product.dart';
-import 'package:torii_shopping/src/products/domain/entities/productPrice.dart';
-import 'package:torii_shopping/src/products/domain/repositories/product_repository.dart';
-import 'package:torii_shopping/src/search/domain/entities/search_filter.dart';
+import 'package:toriishopping/src/common/data/api_resository.dart';
+import 'package:toriishopping/src/common/domain/page_result.dart';
+import 'package:toriishopping/src/products/domain/entities/product.dart';
+import 'package:toriishopping/src/products/domain/entities/productPrice.dart';
+import 'package:toriishopping/src/products/domain/repositories/product_repository.dart';
+import 'package:toriishopping/src/search/domain/entities/search_filter.dart';
 
 class ProductNetworkRepository extends ApiRepository
     implements ProductRepository {

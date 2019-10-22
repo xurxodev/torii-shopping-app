@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:torii_shopping/src/banners/domain/entities/banner.dart';
-import 'package:torii_shopping/src/banners/domain/entities/banner_group.dart';
-import 'package:torii_shopping/src/banners/domain/entities/banner_group_type.dart';
-import 'package:torii_shopping/src/banners/domain/repositories/banner_repository.dart';
-import 'package:torii_shopping/src/common/data/api_resository.dart';
+import 'package:toriishopping/src/banners/domain/entities/banner.dart';
+import 'package:toriishopping/src/banners/domain/entities/banner_group.dart';
+import 'package:toriishopping/src/banners/domain/entities/banner_group_type.dart';
+import 'package:toriishopping/src/banners/domain/repositories/banner_repository.dart';
+import 'package:toriishopping/src/common/data/api_resository.dart';
 
 class BannerNetworkRepository extends ApiRepository
     implements BannerRepository {

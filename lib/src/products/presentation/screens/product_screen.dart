@@ -3,13 +3,14 @@ import 'dart:io';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:torii_shopping/src/common/presentation/blocs/BlocProvider.dart';
-import 'package:torii_shopping/src/common/presentation/snackbar.dart';
-import 'package:torii_shopping/src/common/torii_colors.dart';
-import 'package:torii_shopping/src/products/domain/entities/product.dart';
-import 'package:torii_shopping/src/products/presentation/blocs/product_bloc.dart';
-import 'package:torii_shopping/src/products/presentation/widgets/product_prices_list_widget.dart';
+import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
+import 'package:toriishopping/src/common/presentation/snackbar.dart';
+import 'package:toriishopping/src/common/torii_colors.dart';
+import 'package:toriishopping/src/products/domain/entities/product.dart';
+import 'package:toriishopping/src/products/presentation/blocs/product_bloc.dart';
+import 'package:toriishopping/src/products/presentation/widgets/product_prices_list_widget.dart';
 
+// ignore: must_be_immutable
 class ProductScreen extends StatelessWidget {
   Product initialData;
 

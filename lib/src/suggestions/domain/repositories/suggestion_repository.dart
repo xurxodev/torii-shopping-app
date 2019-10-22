@@ -1,4 +1,4 @@
-import 'package:torii_shopping/src/suggestions/domain/entities/suggestion.dart';
+import 'package:toriishopping/src/suggestions/domain/entities/suggestion.dart';
 
 class SuggestionRepository{
   // ignore: missing_return

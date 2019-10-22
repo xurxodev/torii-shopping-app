@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:torii_shopping/src/banners/domain/entities/banner_group.dart';
-import 'package:torii_shopping/src/banners/domain/usecases/get_banners.dart';
-import 'package:torii_shopping/src/common/presentation/blocs/bloc_base.dart';
+import 'package:toriishopping/src/banners/domain/entities/banner_group.dart';
+import 'package:toriishopping/src/banners/domain/usecases/get_banners.dart';
+import 'package:toriishopping/src/common/presentation/blocs/bloc_base.dart';
 
 class BannersBloc implements BlocBase{
   GetBannersUseCase _getBannersUseCase;

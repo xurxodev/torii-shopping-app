@@ -2,18 +2,18 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:torii_shopping/src/common/presentation/blocs/BlocProvider.dart';
-import 'package:torii_shopping/src/products/presentation/widgets/product_list_widget.dart';
-import 'package:torii_shopping/src/search/domain/entities/search_filter.dart';
-import 'package:torii_shopping/src/search/presentation/blocs/search_products_bloc.dart';
-import 'package:torii_shopping/src/suggestions/presentation/widgets/suggestions_list_widget.dart';
+import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
+import 'package:toriishopping/src/products/presentation/widgets/product_list_widget.dart';
+import 'package:toriishopping/src/search/domain/entities/search_filter.dart';
+import 'package:toriishopping/src/search/presentation/blocs/search_products_bloc.dart';
+import 'package:toriishopping/src/suggestions/presentation/widgets/suggestions_list_widget.dart';
 
 class SearchProductsDelegate extends SearchDelegate {
   SearchFilter _searchFilter;
 
 
   SearchProductsDelegate():
-    super(searchFieldLabel: "Busca productos"){}
+    super(searchFieldLabel: "Busca productos");
 
 
   @override

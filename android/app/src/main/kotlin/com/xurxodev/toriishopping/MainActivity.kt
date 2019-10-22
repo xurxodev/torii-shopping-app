@@ -1,4 +1,4 @@
-package com.xurxodev.torii_shopping
+package com.xurxodev.toriishopping
 
 import android.os.Bundle
 

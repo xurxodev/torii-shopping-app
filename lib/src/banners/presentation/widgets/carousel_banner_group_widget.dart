@@ -1,6 +1,6 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
-import 'package:torii_shopping/src/banners/domain/entities/banner_group.dart';
+import 'package:toriishopping/src/banners/domain/entities/banner_group.dart';
 
 import 'banner_item_widget.dart';
 

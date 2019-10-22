@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:torii_shopping/src/banners/domain/entities/banner_group.dart';
-import 'package:torii_shopping/src/banners/domain/entities/banner_group_type.dart';
-import 'package:torii_shopping/src/banners/presentation/blocs/banners_bloc.dart';
-import 'package:torii_shopping/src/banners/presentation/widgets/list_banner_group_widget.dart';
-import 'package:torii_shopping/src/common/presentation/blocs/BlocProvider.dart';
-import 'package:torii_shopping/src/common/presentation/snackbar.dart';
+import 'package:toriishopping/src/banners/domain/entities/banner_group.dart';
+import 'package:toriishopping/src/banners/domain/entities/banner_group_type.dart';
+import 'package:toriishopping/src/banners/presentation/blocs/banners_bloc.dart';
+import 'package:toriishopping/src/banners/presentation/widgets/list_banner_group_widget.dart';
+import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
+import 'package:toriishopping/src/common/presentation/snackbar.dart';
 
 import 'carousel_banner_group_widget.dart';
 

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:torii_shopping/src/common/presentation/blocs/BlocProvider.dart';
-import 'package:torii_shopping/src/common/presentation/snackbar.dart';
-import 'package:torii_shopping/src/products/presentation/state/products_result_state.dart';
-import 'package:torii_shopping/src/products/presentation/widgets/product_item_widget.dart';
-import 'package:torii_shopping/src/search/presentation/blocs/search_products_bloc.dart';
+import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
+import 'package:toriishopping/src/common/presentation/snackbar.dart';
+import 'package:toriishopping/src/products/presentation/state/products_result_state.dart';
+import 'package:toriishopping/src/products/presentation/widgets/product_item_widget.dart';
+import 'package:toriishopping/src/search/presentation/blocs/search_products_bloc.dart';
 
+// ignore: must_be_immutable
 class ProductListWidget extends StatelessWidget {
   ScrollController _scrollController;
 

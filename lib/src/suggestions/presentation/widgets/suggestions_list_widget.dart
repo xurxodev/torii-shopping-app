@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:torii_shopping/src/common/presentation/blocs/BlocProvider.dart';
-import 'package:torii_shopping/src/common/presentation/snackbar.dart';
-import 'package:torii_shopping/src/search/presentation/blocs/search_products_bloc.dart';
-import 'package:torii_shopping/src/suggestions/domain/entities/suggestion.dart';
-import 'package:torii_shopping/src/suggestions/presentation/widgets/suggestion_item_widget.dart';
+import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
+import 'package:toriishopping/src/common/presentation/snackbar.dart';
+import 'package:toriishopping/src/search/presentation/blocs/search_products_bloc.dart';
+import 'package:toriishopping/src/suggestions/domain/entities/suggestion.dart';
+import 'package:toriishopping/src/suggestions/presentation/widgets/suggestion_item_widget.dart';
 
+// ignore: must_be_immutable
 class SuggestionsListWidget extends StatelessWidget {
   SearchProductsBloc bloc;
 

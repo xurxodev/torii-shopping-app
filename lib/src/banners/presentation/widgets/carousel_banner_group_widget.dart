@@ -12,7 +12,8 @@ class CarouselBannerGroupWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 200.0,
+        width: MediaQuery.of(context).size.width,
+        height: _height(context),
         child: Carousel(
             dotBgColor: Colors.transparent,
             dotIncreasedColor: Colors.lightBlueAccent,
@@ -21,8 +22,16 @@ class CarouselBannerGroupWidget extends StatelessWidget {
             images: bannerGroup.banners
                 .take(10)
                 .map((banner) => BannerItemWidget(
-              banner: banner,
-            ))
+                      banner: banner,
+                    ))
                 .toList()));
+  }
+
+  double _height(BuildContext context) {
+    if (MediaQuery.of(context).orientation == Orientation.portrait) {
+      return MediaQuery.of(context).size.height * 0.25;
+    } else {
+      return MediaQuery.of(context).size.height * 0.50;
+    }
   }
 }

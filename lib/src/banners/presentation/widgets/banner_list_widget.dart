@@ -45,6 +45,9 @@ class BannerListWidget extends StatelessWidget {
             }
         });
 
-    return ListView(padding:EdgeInsets.all(0),scrollDirection: Axis.vertical, children: children);
+    return ListView(
+        padding: EdgeInsets.only(bottom: 16.0),
+        scrollDirection: Axis.vertical,
+        children: children);
   }
 }

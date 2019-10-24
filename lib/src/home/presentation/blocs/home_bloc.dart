@@ -2,15 +2,20 @@ import 'dart:async';
 
 import 'package:toriishopping/src/banners/domain/entities/banner_group.dart';
 import 'package:toriishopping/src/banners/domain/usecases/get_banners.dart';
+import 'package:toriishopping/src/common/contracts/analytics_service.dart';
 import 'package:toriishopping/src/common/presentation/blocs/bloc_base.dart';
 
-class BannersBloc implements BlocBase{
+class HomeBloc implements BlocBase{
+  static const screen_name = "Home";
+  AnalyticsService _analyticsService;
+
   GetBannersUseCase _getBannersUseCase;
 
   final _bannersController = StreamController<List<BannerGroup>>();
   Stream<List<BannerGroup>> get banners => _bannersController.stream;
 
-  BannersBloc(this._getBannersUseCase){
+  HomeBloc(this._analyticsService, this._getBannersUseCase){
+    notifyAnalytics();
     init();
   }
 
@@ -23,6 +28,10 @@ class BannersBloc implements BlocBase{
   @override
   void dispose() {
     _bannersController.close();
+  }
+
+  void notifyAnalytics() {
+    _analyticsService.sendScreenName(screen_name);
   }
 
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:toriishopping/src/browser/presentation/blocs/browser_bloc.dart';
 import 'package:toriishopping/src/browser/presentation/screens/browser_screen.dart';
+import 'package:toriishopping/src/common/di/depdendencies_provider.dart';
+import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
 import 'package:toriishopping/src/products/domain/entities/productPrice.dart';
 
 class ProductPriceItemWidget extends StatelessWidget {
@@ -23,7 +26,10 @@ class ProductPriceItemWidget extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => BrowserScreen(url: productPrice.url),
+              builder: (context) => BlocProvider<BrowserBloc>(
+                bloc: DependenciesProvider.provideBrowserBloc(),
+                child: BrowserScreen(url: productPrice.url),
+              ),
             ),
           );
         },

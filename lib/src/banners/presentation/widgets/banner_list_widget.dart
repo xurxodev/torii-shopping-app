@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:toriishopping/src/banners/domain/entities/banner_group.dart';
 import 'package:toriishopping/src/banners/domain/entities/banner_group_type.dart';
-import 'package:toriishopping/src/banners/presentation/blocs/banners_bloc.dart';
 import 'package:toriishopping/src/banners/presentation/widgets/list_banner_group_widget.dart';
 import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
 import 'package:toriishopping/src/common/presentation/snackbar.dart';
+import 'package:toriishopping/src/home/presentation/blocs/home_bloc.dart';
 
 import 'carousel_banner_group_widget.dart';
 
 class BannerListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final BannersBloc bloc = BlocProvider.of<BannersBloc>(context);
+    final HomeBloc bloc = BlocProvider.of<HomeBloc>(context);
 
     return StreamBuilder<List<BannerGroup>>(
       stream: bloc.banners,

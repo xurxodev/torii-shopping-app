@@ -25,7 +25,7 @@ class SearchBoxWidget extends StatelessWidget {
               focusedBorder: _border),
           onTap: () => showSearch(
                 context: context,
-                delegate: SearchProductsDelegate(),
+                delegate: SearchProductsDelegate(context),
               )),
     );
   }

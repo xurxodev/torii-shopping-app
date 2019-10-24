@@ -1,6 +1,9 @@
 import 'package:toriishopping/src/banners/data/banner_network_repository.dart';
 import 'package:toriishopping/src/banners/domain/usecases/get_banners.dart';
-import 'package:toriishopping/src/banners/presentation/blocs/banners_bloc.dart';
+import 'package:toriishopping/src/browser/presentation/blocs/browser_bloc.dart';
+import 'package:toriishopping/src/common/analytics/firebase_analytics_service.dart';
+import 'package:toriishopping/src/common/contracts/analytics_service.dart';
+import 'package:toriishopping/src/home/presentation/blocs/home_bloc.dart';
 import 'package:toriishopping/src/products/data/product_network_repository.dart';
 import 'package:toriishopping/src/products/domain/entities/product.dart';
 import 'package:toriishopping/src/products/domain/usecases/get_product.dart';
@@ -11,17 +14,18 @@ import 'package:toriishopping/src/suggestions/data/suggestion_network_repository
 import 'package:toriishopping/src/suggestions/domain/usecases/get_suggestions.dart';
 
 class DependenciesProvider {
-  static BannersBloc _bannersBloc;
+  static HomeBloc _homeBloc;
   static SearchProductsBloc _searchProductsBloc;
+  static AnalyticsService _analyticsService;
 
-  static BannersBloc provideBannersBloc() {
-    if (_bannersBloc == null) {
+  static HomeBloc provideBannersBloc() {
+    if (_homeBloc == null) {
       BannerNetworkRepository repository = new BannerNetworkRepository();
       GetBannersUseCase getBannersUseCase = new GetBannersUseCase(repository);
-      _bannersBloc = new BannersBloc(getBannersUseCase);
+      _homeBloc = new HomeBloc(_provideAnalyticsService(), getBannersUseCase);
     }
 
-    return _bannersBloc;
+    return _homeBloc;
   }
 
   static SearchProductsBloc provideSearchProductsBloc() {
@@ -37,7 +41,7 @@ class DependenciesProvider {
           new GetSuggestionsUseCase(suggestionsRepository);
 
       _searchProductsBloc =
-          new SearchProductsBloc(getProductsUseCase, getSuggestionsUseCase);
+          new SearchProductsBloc(_provideAnalyticsService(),getProductsUseCase, getSuggestionsUseCase);
     }
 
     return _searchProductsBloc;
@@ -48,10 +52,24 @@ class DependenciesProvider {
     GetProductByAsinUseCase getProductByAsinUseCase =
         new GetProductByAsinUseCase(productRepository);
 
-    final _productBloc = new ProductBloc(getProductByAsinUseCase);
+    final _productBloc = new ProductBloc(_provideAnalyticsService(),getProductByAsinUseCase);
 
-    _productBloc.initState(product);
+    _productBloc.init(product);
 
     return _productBloc;
   }
+
+  static BrowserBloc provideBrowserBloc() {
+    return BrowserBloc(_provideAnalyticsService());
+  }
+
+  static AnalyticsService _provideAnalyticsService() {
+    if (_analyticsService == null) {
+      _analyticsService = FirebaseAnalyticsService();
+    }
+
+    return _analyticsService;
+  }
+
+
 }

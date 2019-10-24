@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:toriishopping/src/common/contracts/analytics_service.dart';
 import 'package:toriishopping/src/common/domain/page_result.dart';
 import 'package:toriishopping/src/common/presentation/blocs/bloc_base.dart';
 import 'package:toriishopping/src/products/domain/entities/product.dart';
@@ -9,6 +10,9 @@ import 'package:toriishopping/src/suggestions/domain/entities/suggestion.dart';
 import 'package:toriishopping/src/suggestions/domain/usecases/get_suggestions.dart';
 
 class SearchProductsBloc implements BlocBase {
+  static const screen_name = "Search";
+  AnalyticsService _analyticsService;
+
   GetProductsUseCase _getProductsUseCase;
   GetSuggestionsUseCase _getSuggestionsUseCase;
 
@@ -27,12 +31,17 @@ class SearchProductsBloc implements BlocBase {
   bool _searching = false;
   SearchFilter _searchFilter;
 
-  SearchProductsBloc(this._getProductsUseCase, this._getSuggestionsUseCase) {
+  SearchProductsBloc(this._analyticsService, this._getProductsUseCase,
+      this._getSuggestionsUseCase) {
     _queryController.stream.listen((q) {
       _query = q;
 
       loadSuggestions(_query);
     });
+  }
+
+  void init() {
+    notifyAnalytics();
   }
 
   void performSearch(SearchFilter searchFilter) async {
@@ -45,8 +54,7 @@ class SearchProductsBloc implements BlocBase {
         _state = ProductsResultState.empty();
       }
 
-      _getProductsUseCase.execute(searchFilter)
-          .then((productsPage) {
+      _getProductsUseCase.execute(searchFilter).then((productsPage) {
         var totalItems = new List<Product>();
         totalItems.addAll(_state.result.items);
         totalItems.addAll(productsPage.items);
@@ -65,7 +73,8 @@ class SearchProductsBloc implements BlocBase {
   }
 
   void loadSuggestions(String prefix) async {
-    _getSuggestionsUseCase.execute(prefix)
+    _getSuggestionsUseCase
+        .execute(prefix)
         .then((suggestions) => _suggestionsController.sink.add(suggestions))
         .catchError((error) => _suggestionsController.sink.addError(error));
   }
@@ -85,5 +94,9 @@ class SearchProductsBloc implements BlocBase {
       performSearch(new SearchFilter(
           _searchFilter.query, _searchFilter.page + 1, _searchFilter.category));
     }
+  }
+
+  void notifyAnalytics() {
+    _analyticsService.sendScreenName(screen_name);
   }
 }

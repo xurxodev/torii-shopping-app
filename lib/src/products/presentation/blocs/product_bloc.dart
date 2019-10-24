@@ -1,24 +1,29 @@
 import 'dart:async';
+import 'package:toriishopping/src/common/contracts/analytics_service.dart';
 import 'package:toriishopping/src/common/presentation/blocs/bloc_base.dart';
 import 'package:toriishopping/src/products/domain/entities/product.dart';
 import 'package:toriishopping/src/products/domain/usecases/get_product.dart';
 
 class ProductBloc implements BlocBase {
+  static const screen_name = "Product: ";
+  AnalyticsService _analyticsService;
+
   GetProductByAsinUseCase _getProductByAsinUseCase;
 
   final _productController = StreamController<Product>.broadcast();
 
   Stream<Product> get product => _productController.stream;
 
-  ProductBloc(this._getProductByAsinUseCase);
+  ProductBloc(this._analyticsService, this._getProductByAsinUseCase);
 
   Product _product;
 
-  initState(Product initProduct) {
+  init(Product initProduct) {
     _product = initProduct;
     _productController.sink.add(_product);
 
     refreshData();
+    notifyAnalytics();
   }
 
   void refreshData() async {
@@ -33,5 +38,9 @@ class ProductBloc implements BlocBase {
   @override
   void dispose() {
     _productController.close();
+  }
+
+  void notifyAnalytics() {
+    _analyticsService.sendScreenName(screen_name + _product.name);
   }
 }

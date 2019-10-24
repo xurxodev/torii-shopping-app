@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "793431161303",
+    "firebase_url": "https://torii-shopping-app.firebaseio.com",
+    "project_id": "torii-shopping-app",
+    "storage_bucket": "torii-shopping-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793431161303:android:266f508a467c2a3a103392",
+        "android_client_info": {
+          "package_name": "com.xurxodev.toriishopping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793431161303-14s7220fu10nd2hb6p09ui0t59l3f7uk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xurxodev.toriishopping",
+            "certificate_hash": "948902a752fcd4a4d47a397bb90d3ed4e3d2e536"
+          }
+        },
+        {
+          "client_id": "793431161303-hhefq8m16scm453ocn61p49nr4vp89o1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsD2QWFXaqfkz3PjIb8-Ow8BDIReBsBkI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "793431161303-hhefq8m16scm453ocn61p49nr4vp89o1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

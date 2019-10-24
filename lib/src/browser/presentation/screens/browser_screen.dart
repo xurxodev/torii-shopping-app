@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:share/share.dart';
+import 'package:toriishopping/src/browser/presentation/blocs/browser_bloc.dart';
+import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 // ignore: must_be_immutable
@@ -14,6 +16,11 @@ class BrowserScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BrowserBloc _browserBloc =
+    BlocProvider.of<BrowserBloc>(context);
+
+    _browserBloc.init(url);
+
     return Scaffold(
         appBar: AppBar(
           actions: <Widget>[

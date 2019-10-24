@@ -12,8 +12,12 @@ class SearchProductsDelegate extends SearchDelegate {
   SearchFilter _searchFilter;
 
 
-  SearchProductsDelegate():
-    super(searchFieldLabel: "Busca productos");
+  SearchProductsDelegate(BuildContext context):
+    super(searchFieldLabel: "Busca productos"){
+    SearchProductsBloc _searchProductsBloc =
+    BlocProvider.of<SearchProductsBloc>(context);
+    _searchProductsBloc.init();
+  }
 
 
   @override

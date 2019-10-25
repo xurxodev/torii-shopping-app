@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:toriishopping/src/Browser/presentation/screens/browser_screen.dart';
 import 'package:toriishopping/src/banners/domain/entities/banner.dart'
     as toriiBanner;
+import 'package:toriishopping/src/browser/presentation/blocs/browser_bloc.dart';
+import 'package:toriishopping/src/common/di/depdendencies_provider.dart';
+import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
 
 class BannerItemWidget extends StatelessWidget {
   final toriiBanner.Banner banner;
@@ -21,9 +24,9 @@ class BannerItemWidget extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => BrowserScreen(
-                        url: banner.linkUrl,
-                      )));
+                  builder: (context) => BlocProvider<BrowserBloc>(
+                      bloc: DependenciesProvider.provideBrowserBloc(),
+                      child: BrowserScreen(url: banner.linkUrl))));
         },
         child: Container(
             padding: padding,

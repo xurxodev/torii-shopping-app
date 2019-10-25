@@ -1,8 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
+import 'package:toriishopping/src/common/presentation/widgets/clear_button.dart';
 import 'package:toriishopping/src/products/presentation/widgets/product_list_widget.dart';
 import 'package:toriishopping/src/search/domain/entities/search_filter.dart';
 import 'package:toriishopping/src/search/presentation/blocs/search_products_bloc.dart';
@@ -11,50 +10,44 @@ import 'package:toriishopping/src/suggestions/presentation/widgets/suggestions_l
 class SearchProductsDelegate extends SearchDelegate {
   SearchFilter _searchFilter;
 
-
-  SearchProductsDelegate(BuildContext context):
-    super(searchFieldLabel: "Busca productos"){
+  SearchProductsDelegate(BuildContext context)
+      : super(searchFieldLabel: "Busca productos") {
     SearchProductsBloc _searchProductsBloc =
-    BlocProvider.of<SearchProductsBloc>(context);
+        BlocProvider.of<SearchProductsBloc>(context);
     _searchProductsBloc.init();
   }
 
-
   @override
   ThemeData appBarTheme(BuildContext context) {
-      assert(context != null);
-      final ThemeData theme = Theme.of(context);
-      assert(theme != null);
-      return theme.copyWith(
-        primaryColor: Colors.white,
-        primaryIconTheme: theme.primaryIconTheme.copyWith(color: Colors.blue),
-        primaryColorBrightness: Brightness.light,
-        primaryTextTheme: theme.textTheme,
-      );
+    assert(context != null);
+    final ThemeData theme = Theme.of(context);
+    assert(theme != null);
+    return theme.copyWith(
+      primaryColor: Colors.white,
+      primaryIconTheme: theme.primaryIconTheme.copyWith(color: Colors.blue),
+      primaryColorBrightness: Brightness.light,
+      primaryTextTheme: theme.textTheme,
+    );
   }
 
   @override
   List<Widget> buildActions(BuildContext context) {
-
     return [
-      IconButton(
-        icon: Icon(Platform.isAndroid
-            ? Icons.clear
-            : CupertinoIcons.clear_circled_solid),
-        onPressed: () {
-          query = '';
-          _searchFilter = new SearchFilter(query);
-        },
-      ),
+      ClearButton(onPressed: () {
+        query = '';
+        _searchFilter = new SearchFilter(query);
+      })
     ];
   }
 
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Platform.isAndroid ? Icons.arrow_back : CupertinoIcons.back),
+      icon: BackButtonIcon(),
+      color: Colors.blue,
+      tooltip: MaterialLocalizations.of(context).backButtonTooltip,
       onPressed: () {
-        close(context, null);
+        Navigator.maybePop(context);
       },
     );
   }

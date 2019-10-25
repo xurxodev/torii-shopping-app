@@ -86,15 +86,7 @@ class ProductScreen extends StatelessWidget {
           ),
         )),
         Align(
-          alignment: Alignment.topLeft,
-          child: IconButton(
-            icon: Icon(
-              Platform.isAndroid ? Icons.arrow_back : CupertinoIcons.back,
-              color: Colors.blue,
-            ),
-            onPressed: () => Navigator.pop(context),
-          ),
-        )
+            alignment: Alignment.topLeft, child: BackButton(color: Colors.blue))
       ],
     )));
   }
@@ -127,7 +119,8 @@ class ProductScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 21, color: Colors.white),
               ),
             ),
-            Expanded(child: Center(child: ProductPricesListWidget(product.prices))),
+            Expanded(
+                child: Center(child: ProductPricesListWidget(product.prices))),
           ],
         ),
       ),

@@ -1,28 +1,33 @@
 import 'dart:async';
 
+import 'package:toriishopping/src/banners/domain/entities/banner.dart';
 import 'package:toriishopping/src/banners/domain/entities/banner_group.dart';
+import 'package:toriishopping/src/banners/domain/entities/banner_group_type.dart';
 import 'package:toriishopping/src/banners/domain/usecases/get_banners.dart';
+import 'package:toriishopping/src/common/contracts/analytics_events.dart';
 import 'package:toriishopping/src/common/contracts/analytics_service.dart';
 import 'package:toriishopping/src/common/presentation/blocs/bloc_base.dart';
 
-class HomeBloc implements BlocBase{
+class HomeBloc implements BlocBase {
   static const screen_name = "Home";
   AnalyticsService _analyticsService;
 
   GetBannersUseCase _getBannersUseCase;
 
   final _bannersController = StreamController<List<BannerGroup>>();
+
   Stream<List<BannerGroup>> get banners => _bannersController.stream;
 
-  HomeBloc(this._analyticsService, this._getBannersUseCase){
+  HomeBloc(this._analyticsService, this._getBannersUseCase) {
     notifyAnalytics();
     init();
   }
 
   init() async {
-    _getBannersUseCase.execute()
-    .then((banners) => _bannersController.sink.add(banners))
-    .catchError((error) => _bannersController.sink.addError(error));
+    _getBannersUseCase
+        .execute()
+        .then((banners) => _bannersController.sink.add(banners))
+        .catchError((error) => _bannersController.sink.addError(error));
   }
 
   @override
@@ -34,4 +39,16 @@ class HomeBloc implements BlocBase{
     _analyticsService.sendScreenName(screen_name);
   }
 
+  void selectBanner(BannerGroupType type, Banner banner) {
+    ContentType contentType;
+
+    if (type == BannerGroupType.carousel) {
+      contentType = ContentType.carousel_banner;
+    } else {
+      contentType = ContentType.list_banner;
+    }
+
+    _analyticsService
+        .sendEvent(SelectContentEvent(contentType, banner.linkUrl));
+  }
 }

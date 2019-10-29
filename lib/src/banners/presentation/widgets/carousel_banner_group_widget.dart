@@ -1,13 +1,16 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:toriishopping/src/banners/domain/entities/banner_group.dart';
+import 'package:toriishopping/src/common/presentation/widgets/functions.dart';
 
 import 'banner_item_widget.dart';
 
 class CarouselBannerGroupWidget extends StatelessWidget {
   final BannerGroup bannerGroup;
+  final OnItemTapCallback onItemTap;
 
-  CarouselBannerGroupWidget({Key key, @required this.bannerGroup});
+  CarouselBannerGroupWidget(
+      {Key key, @required this.bannerGroup, @required this.onItemTap});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +26,7 @@ class CarouselBannerGroupWidget extends StatelessWidget {
                 .take(10)
                 .map((banner) => BannerItemWidget(
                       banner: banner,
+                      onItemTap: onItemTap,
                     ))
                 .toList()));
   }

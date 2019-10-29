@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:toriishopping/src/common/contracts/analytics_events.dart';
 import 'package:toriishopping/src/common/contracts/analytics_service.dart';
 import 'package:toriishopping/src/common/domain/page_result.dart';
 import 'package:toriishopping/src/common/presentation/blocs/bloc_base.dart';
@@ -52,6 +53,7 @@ class SearchProductsBloc implements BlocBase {
 
       if (searchFilter.page == 1) {
         _state = ProductsResultState.empty();
+        notifySearchToAnalytics();
       }
 
       _getProductsUseCase.execute(searchFilter).then((productsPage) {
@@ -98,5 +100,9 @@ class SearchProductsBloc implements BlocBase {
 
   void notifyAnalytics() {
     _analyticsService.sendScreenName(screen_name);
+  }
+
+  void notifySearchToAnalytics() {
+    _analyticsService.sendEvent(SearchEvent(_query));
   }
 }

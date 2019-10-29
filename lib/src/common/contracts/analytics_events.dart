@@ -19,4 +19,4 @@ class SelectContentEvent extends AnalyticsEvent {
   }
 }
 
-enum ContentType { banner, product, store }
+enum ContentType { carousel_banner, list_banner }

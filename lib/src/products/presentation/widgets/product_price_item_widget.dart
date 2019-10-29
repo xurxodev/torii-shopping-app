@@ -4,6 +4,7 @@ import 'package:toriishopping/src/browser/presentation/screens/browser_screen.da
 import 'package:toriishopping/src/common/di/depdendencies_provider.dart';
 import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
 import 'package:toriishopping/src/products/domain/entities/productPrice.dart';
+import 'package:toriishopping/src/common/presentation/navigator/default_navigator.dart';
 
 class ProductPriceItemWidget extends StatelessWidget {
   final ProductPrice productPrice;
@@ -21,17 +22,11 @@ class ProductPriceItemWidget extends StatelessWidget {
       ));
     }
 
+    WidgetBuilder browserBuilder = BrowserRoute(productPrice.url).builder();
+
     return new GestureDetector(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => BlocProvider<BrowserBloc>(
-                bloc: DependenciesProvider.provideBrowserBloc(),
-                child: BrowserScreen(url: productPrice.url),
-              ),
-            ),
-          );
+          Navigator.push(context, MaterialPageRoute(builder: browserBuilder));
         },
         child: Container(
             decoration: BoxDecoration(

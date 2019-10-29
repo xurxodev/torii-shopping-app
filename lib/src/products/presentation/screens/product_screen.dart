@@ -14,7 +14,7 @@ import 'package:toriishopping/src/products/presentation/widgets/product_prices_l
 class ProductScreen extends StatelessWidget {
   Product initialData;
 
-  ProductScreen(this.initialData);
+  ProductScreen({this.initialData});
 
   @override
   Widget build(BuildContext context) {

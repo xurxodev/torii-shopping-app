@@ -1,32 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:toriishopping/src/Browser/presentation/screens/browser_screen.dart';
 import 'package:toriishopping/src/banners/domain/entities/banner.dart'
     as toriiBanner;
-import 'package:toriishopping/src/browser/presentation/blocs/browser_bloc.dart';
-import 'package:toriishopping/src/common/di/depdendencies_provider.dart';
-import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
+import 'package:toriishopping/src/common/presentation/functions/item_tap.dart';
 
 class BannerItemWidget extends StatelessWidget {
   final toriiBanner.Banner banner;
   final BorderRadius borderRadius;
   final EdgeInsets padding;
+  final ItemTap<toriiBanner.Banner> itemTap;
 
   BannerItemWidget(
       {Key key,
       @required this.banner,
       this.borderRadius = BorderRadius.zero,
-      this.padding = EdgeInsets.zero});
+      this.padding = EdgeInsets.zero,
+      @required this.itemTap});
 
   @override
   Widget build(BuildContext context) {
+    //WidgetBuilder browserBuilder = BrowserRoute(banner.linkUrl).builder();
+
     return new GestureDetector(
         onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => BlocProvider<BrowserBloc>(
-                      bloc: DependenciesProvider.provideBrowserBloc(),
-                      child: BrowserScreen(url: banner.linkUrl))));
+          itemTap(banner);
+          //Navigator.push(context, MaterialPageRoute(builder: browserBuilder));
         },
         child: Container(
             padding: padding,

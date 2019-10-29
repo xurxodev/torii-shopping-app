@@ -5,6 +5,7 @@ import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
 import 'package:toriishopping/src/common/torii_colors.dart';
 import 'package:toriishopping/src/home/presentation/blocs/home_bloc.dart';
 import 'package:toriishopping/src/home/widgets/home_toolbar_widget.dart';
+import 'package:toriishopping/src/search/presentation/blocs/search_products_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -16,7 +17,7 @@ class HomeScreen extends StatelessWidget {
           HomeToolbarWidget(),
           Expanded(
             child: BlocProvider<HomeBloc>(
-              bloc: DependenciesProvider.provideBannersBloc(),
+              bloc: DependenciesProvider.provideBannersBloc(context),
               child: BannerListWidget(),
             ),
           )

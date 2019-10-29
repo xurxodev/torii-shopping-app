@@ -47,7 +47,8 @@ class SearchProductsDelegate extends SearchDelegate {
       color: Colors.blue,
       tooltip: MaterialLocalizations.of(context).backButtonTooltip,
       onPressed: () {
-        Navigator.maybePop(context);
+        //Take control back to previous page
+        this.close(context, null);
       },
     );
   }

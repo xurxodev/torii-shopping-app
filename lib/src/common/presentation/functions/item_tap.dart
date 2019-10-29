@@ -1,0 +1,1 @@
+typedef ItemTap<T> = void Function(T item);

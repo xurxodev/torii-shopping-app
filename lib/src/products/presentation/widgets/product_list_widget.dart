@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
 import 'package:toriishopping/src/common/presentation/snackbar.dart';
+import 'package:toriishopping/src/products/domain/entities/product.dart';
 import 'package:toriishopping/src/products/presentation/state/products_result_state.dart';
 import 'package:toriishopping/src/products/presentation/widgets/product_item_widget.dart';
 import 'package:toriishopping/src/search/presentation/blocs/search_products_bloc.dart';
@@ -30,7 +31,7 @@ class ProductListWidget extends StatelessWidget {
       stream: bloc.state,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return buildSearchResults(context, snapshot.data);
+          return buildSearchResults(context, snapshot.data, bloc);
         } else if (snapshot.hasError) {
           showSnackBarPostFrame(context, snapshot.error.toString());
           return Container();
@@ -43,7 +44,8 @@ class ProductListWidget extends StatelessWidget {
     );
   }
 
-  Widget buildSearchResults(BuildContext context, ProductsResultState state) {
+  Widget buildSearchResults(BuildContext context, ProductsResultState state,
+      SearchProductsBloc bloc) {
     return Container(
       child: ListView.separated(
         controller: _scrollController,
@@ -52,20 +54,22 @@ class ProductListWidget extends StatelessWidget {
         ),
         itemCount: state.result.items.length + 1,
         itemBuilder: (context, index) {
-          return buildItem(index, state);
+          return buildItem(index, state, bloc);
         },
       ),
       color: Colors.white,
     );
   }
 
-  Widget buildItem(int index, ProductsResultState state) {
+  Widget buildItem(
+      int index, ProductsResultState state, SearchProductsBloc bloc) {
     if (index == state.result.items.length && state.loading) {
       return Center(
         child: CircularProgressIndicator(),
       );
     } else if (index < state.result.items.length) {
-      return Center(child: ProductItemWidget(product: state.result.items[index]));
+      return Center(
+          child: ProductItemWidget(product: state.result.items[index], itemTap: (Product product) => bloc.selectProduct(state.result.items[index]),));
     } else {
       return Column();
     }

@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:toriishopping/src/common/contracts/analytics_service.dart';
+import 'package:toriishopping/src/common/contracts/routes_navigator.dart';
 import 'package:toriishopping/src/common/domain/page_result.dart';
 import 'package:toriishopping/src/common/presentation/blocs/bloc_base.dart';
+import 'package:toriishopping/src/common/presentation/navigator/default_navigator.dart';
 import 'package:toriishopping/src/products/domain/entities/product.dart';
 import 'package:toriishopping/src/products/domain/usecases/get_products.dart';
 import 'package:toriishopping/src/products/presentation/state/products_result_state.dart';
@@ -15,6 +17,7 @@ class SearchProductsBloc implements BlocBase {
 
   GetProductsUseCase _getProductsUseCase;
   GetSuggestionsUseCase _getSuggestionsUseCase;
+  RoutesNavigator _navigator;
 
   final _resultsController = StreamController<ProductsResultState>.broadcast();
   final _queryController = StreamController<String>.broadcast();
@@ -32,7 +35,7 @@ class SearchProductsBloc implements BlocBase {
   SearchFilter _searchFilter;
 
   SearchProductsBloc(this._analyticsService, this._getProductsUseCase,
-      this._getSuggestionsUseCase) {
+      this._getSuggestionsUseCase, this._navigator) {
     _queryController.stream.listen((q) {
       _query = q;
 
@@ -98,5 +101,9 @@ class SearchProductsBloc implements BlocBase {
 
   void notifyAnalytics() {
     _analyticsService.sendScreenName(screen_name);
+  }
+
+  void selectProduct(Product product) {
+    _navigator.push(ProductRoute(initialData: product));
   }
 }

@@ -1,16 +1,16 @@
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
+import 'package:toriishopping/src/common/presentation/navigator/default_navigator.dart';
 
 import 'common/di/depdendencies_provider.dart';
 import 'common/presentation/blocs/BlocProvider.dart';
 import 'common/torii_colors.dart';
-import 'home/screens/home_screen.dart';
 import 'search/presentation/blocs/search_products_bloc.dart';
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    WidgetBuilder homeBuilder = HomeRoute().builder();
 
     final materialApp = MaterialApp(
       title: 'Torii Shopping',
@@ -20,13 +20,13 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.blueAccent,
           primaryIconTheme: IconThemeData(color: Colors.blue)),
       initialRoute: '/',
-      home: HomeScreen(),
+      home: homeBuilder(context)
     );
 
     //SearchProductsBloc is initialized here because MyApp
     //of my widgets tree is the unique parent for for SearchDelegate
     return BlocProvider<SearchProductsBloc>(
-      bloc: DependenciesProvider.provideSearchProductsBloc(),
+      bloc: DependenciesProvider.provideSearchProductsBloc(context),
       child: materialApp,
     );
   }

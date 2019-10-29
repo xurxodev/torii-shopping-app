@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:toriishopping/src/banners/data/banner_network_repository.dart';
 import 'package:toriishopping/src/banners/domain/usecases/get_banners.dart';
 import 'package:toriishopping/src/browser/presentation/blocs/browser_bloc.dart';
 import 'package:toriishopping/src/common/analytics/firebase_analytics_service.dart';
 import 'package:toriishopping/src/common/contracts/analytics_service.dart';
+import 'package:toriishopping/src/common/presentation/navigator/default_navigator.dart';
 import 'package:toriishopping/src/home/presentation/blocs/home_bloc.dart';
 import 'package:toriishopping/src/products/data/product_network_repository.dart';
 import 'package:toriishopping/src/products/domain/entities/product.dart';
@@ -18,17 +20,19 @@ class DependenciesProvider {
   static SearchProductsBloc _searchProductsBloc;
   static AnalyticsService _analyticsService;
 
-  static HomeBloc provideBannersBloc() {
+  static HomeBloc provideBannersBloc(BuildContext context) {
     if (_homeBloc == null) {
       BannerNetworkRepository repository = new BannerNetworkRepository();
       GetBannersUseCase getBannersUseCase = new GetBannersUseCase(repository);
-      _homeBloc = new HomeBloc(_provideAnalyticsService(), getBannersUseCase);
+      DefaultNavigator navigator = DefaultNavigator(context);
+      _homeBloc = new HomeBloc(
+          _provideAnalyticsService(), getBannersUseCase, navigator);
     }
 
     return _homeBloc;
   }
 
-  static SearchProductsBloc provideSearchProductsBloc() {
+  static SearchProductsBloc provideSearchProductsBloc(BuildContext context) {
     if (_searchProductsBloc == null) {
       ProductNetworkRepository productRepository =
           new ProductNetworkRepository();
@@ -40,8 +44,10 @@ class DependenciesProvider {
       GetSuggestionsUseCase getSuggestionsUseCase =
           new GetSuggestionsUseCase(suggestionsRepository);
 
-      _searchProductsBloc =
-          new SearchProductsBloc(_provideAnalyticsService(),getProductsUseCase, getSuggestionsUseCase);
+      DefaultNavigator navigator = DefaultNavigator(context);
+
+      _searchProductsBloc = new SearchProductsBloc(_provideAnalyticsService(),
+          getProductsUseCase, getSuggestionsUseCase, navigator);
     }
 
     return _searchProductsBloc;
@@ -52,7 +58,8 @@ class DependenciesProvider {
     GetProductByAsinUseCase getProductByAsinUseCase =
         new GetProductByAsinUseCase(productRepository);
 
-    final _productBloc = new ProductBloc(_provideAnalyticsService(),getProductByAsinUseCase);
+    final _productBloc =
+        new ProductBloc(_provideAnalyticsService(), getProductByAsinUseCase);
 
     _productBloc.init(product);
 
@@ -70,6 +77,4 @@ class DependenciesProvider {
 
     return _analyticsService;
   }
-
-
 }

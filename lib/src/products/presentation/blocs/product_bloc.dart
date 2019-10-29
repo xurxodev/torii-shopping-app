@@ -20,7 +20,6 @@ class ProductBloc implements BlocBase {
 
   init(Product initProduct) {
     _product = initProduct;
-    _productController.sink.add(_product);
 
     refreshData();
     notifyAnalytics();

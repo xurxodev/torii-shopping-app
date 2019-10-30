@@ -53,7 +53,7 @@ class SearchProductsBloc implements BlocBase {
 
       if (searchFilter.page == 1) {
         _state = ProductsResultState.empty();
-        notifySearchToAnalytics();
+        notifySearchToAnalytics(searchFilter.query);
       }
 
       _getProductsUseCase.execute(searchFilter).then((productsPage) {
@@ -102,7 +102,7 @@ class SearchProductsBloc implements BlocBase {
     _analyticsService.sendScreenName(screen_name);
   }
 
-  void notifySearchToAnalytics() {
-    _analyticsService.sendEvent(SearchEvent(_query));
+  void notifySearchToAnalytics(String query) {
+    _analyticsService.sendEvent(SearchEvent(query));
   }
 }

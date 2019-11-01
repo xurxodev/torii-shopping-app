@@ -58,8 +58,8 @@ class _NotificationsHandlerState extends State<NotificationsHandler> {
   }
 
   void _navigateToBrowser(Map<String, dynamic> message){
-
-    String url = message["data"]["url"];
+    var data = message['data'] ?? message;
+    String url = data['url'];
 
     print("url: $url");
 

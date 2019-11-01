@@ -11,19 +11,19 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ToriiColors.transparent,
-      body: NotificationsHandler(child: Column(
-        children: <Widget>[
-          HomeToolbarWidget(),
-          Expanded(
-            child: BlocProvider<HomeBloc>(
-              bloc: DependenciesProvider.provideBannersBloc(),
-              child: BannerListWidget(),
-            ),
-          )
-        ],
-      ),
-    )
-    );
+        backgroundColor: ToriiColors.transparent,
+        body: NotificationsHandler(
+          child: Column(
+            children: <Widget>[
+              HomeToolbarWidget(),
+              Expanded(
+                child: BlocProvider<HomeBloc>(
+                  bloc: DependenciesProvider.provideBannersBloc(),
+                  child: BannerListWidget(),
+                ),
+              )
+            ],
+          ),
+        ));
   }
 }

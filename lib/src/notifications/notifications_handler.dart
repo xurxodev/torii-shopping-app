@@ -69,6 +69,7 @@ class _NotificationsHandlerState extends State<NotificationsHandler> {
           ),
         );
 
+
         Scaffold.of(context).showSnackBar(snackBar);
       },
       onLaunch: (Map<String, dynamic> message) async {

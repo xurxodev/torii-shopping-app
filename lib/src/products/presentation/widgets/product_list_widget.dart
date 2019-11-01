@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
 import 'package:toriishopping/src/common/presentation/snackbar.dart';
+import 'package:toriishopping/src/notifications/notifications_handler.dart';
 import 'package:toriishopping/src/products/presentation/state/products_result_state.dart';
 import 'package:toriishopping/src/products/presentation/widgets/product_item_widget.dart';
 import 'package:toriishopping/src/search/presentation/blocs/search_products_bloc.dart';
@@ -26,7 +27,8 @@ class ProductListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     bloc = BlocProvider.of<SearchProductsBloc>(context);
 
-    return StreamBuilder<ProductsResultState>(
+    return NotificationsHandler(
+        child: StreamBuilder<ProductsResultState>(
       stream: bloc.state,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
@@ -40,7 +42,7 @@ class ProductListWidget extends StatelessWidget {
           child: CircularProgressIndicator(),
         );
       },
-    );
+    ));
   }
 
   Widget buildSearchResults(BuildContext context, ProductsResultState state) {
@@ -65,7 +67,8 @@ class ProductListWidget extends StatelessWidget {
         child: CircularProgressIndicator(),
       );
     } else if (index < state.result.items.length) {
-      return Center(child: ProductItemWidget(product: state.result.items[index]));
+      return Center(
+          child: ProductItemWidget(product: state.result.items[index]));
     } else {
       return Column();
     }

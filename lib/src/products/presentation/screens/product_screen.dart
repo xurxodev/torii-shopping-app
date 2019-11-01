@@ -1,11 +1,10 @@
-import 'dart:io';
-
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
 import 'package:toriishopping/src/common/presentation/snackbar.dart';
 import 'package:toriishopping/src/common/torii_colors.dart';
+import 'package:toriishopping/src/notifications/notifications_handler.dart';
 import 'package:toriishopping/src/products/domain/entities/product.dart';
 import 'package:toriishopping/src/products/presentation/blocs/product_bloc.dart';
 import 'package:toriishopping/src/products/presentation/widgets/product_prices_list_widget.dart';
@@ -33,9 +32,10 @@ class ProductScreen extends StatelessWidget {
         }
 
         return Scaffold(
-          backgroundColor: Colors.white,
-          body: content,
-        );
+            backgroundColor: Colors.white,
+            body: NotificationsHandler(
+              child: content,
+            ));
       },
     );
   }

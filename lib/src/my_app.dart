@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.blueAccent,
           primaryIconTheme: IconThemeData(color: Colors.blue)),
       initialRoute: '/',
-      home: NotificationsHandler(child: HomeScreen()),
+      home: HomeScreen(),
     );
 
     //SearchProductsBloc is initialized here because MyApp

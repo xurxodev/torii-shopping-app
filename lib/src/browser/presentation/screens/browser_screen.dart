@@ -34,13 +34,12 @@ class BrowserScreen extends StatelessWidget {
             }),
           ],
         ),
-        body: NotificationsHandler(
-            child: WebView(
+        body: WebView(
           initialUrl: url,
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController webViewController) {
             _webViewController = webViewController;
           },
-        )));
+        ));
   }
 }

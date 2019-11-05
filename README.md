@@ -1,22 +1,26 @@
 ![torii-shopping-app-header](https://user-images.githubusercontent.com/5593590/64252021-21856380-cf1a-11e9-9f01-6ce35b06f40c.png)
 
-ToriiShopping app is a flutter application for iOS and Android.
+ToriiShopping app is a shopping demo app written using flutter for iOS and Android using Bloc Pattern.
 
 ## Description
 
-Show products deals, services and categories of several shops.
+Show carousel of products, deals, services and categories of several online shops.
 You can search products and navigate to shop web to buy it.
 
-
 ## Screenshots
-<img width="600" alt="home" src="https://user-images.githubusercontent.com/5593590/65502379-f9f33c80-dec2-11e9-80eb-0b615d43f489.png">
-<img width="600" alt="search-suggestions" src="https://user-images.githubusercontent.com/5593590/65502381-fa8bd300-dec2-11e9-80cd-977b6d7a6008.png">
-<img width="600" alt="search-results" src="https://user-images.githubusercontent.com/5593590/65502380-fa8bd300-dec2-11e9-8bbb-fd1b476d2f78.png">
+<img width="600" alt="home" src="https://user-images.githubusercontent.com/5593590/68067225-3a589c80-fd44-11e9-98fa-b534a1834663.png">
+<img width="600" alt="search-suggestions" src="https://user-images.githubusercontent.com/5593590/68067222-3a589c80-fd44-11e9-99f0-f41d85621ed6.png">
+<img width="600" alt="search-results" src="https://user-images.githubusercontent.com/5593590/68067223-3a589c80-fd44-11e9-836d-8f1a3ddffb62.png">
+<img width="600" alt="product" src="https://user-images.githubusercontent.com/5593590/68067224-3a589c80-fd44-11e9-8a88-2946554d8b4b.png">
 
 ## Libraries and plugins used in this project
 * [http](https://pub.dev/packages/http)
 * [webview_flutter](https://pub.dev/packages/webview_flutter)
 * [share](https://pub.dev/packages/share)
+* [flutter_secure_storage](https://pub.dev/packages/flutter_secure_storage)
+* [carousel_pro](https://pub.dev/packages/carousel_pro)
+* [firebase_analytics](https://pub.dev/packages/firebase_analytics)
+* [firebase_messaging](https://pub.dev/packages/firebase_messaging)
 ## License
 
 MIT License

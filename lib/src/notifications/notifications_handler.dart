@@ -4,10 +4,7 @@ import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:toriishopping/src/browser/presentation/blocs/browser_bloc.dart';
 import 'package:toriishopping/src/browser/presentation/screens/browser_screen.dart';
-import 'package:toriishopping/src/common/di/depdendencies_provider.dart';
-import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
 
 class NotificationsHandler extends StatefulWidget {
   final Widget child;
@@ -100,10 +97,7 @@ class _NotificationsHandlerState extends State<NotificationsHandler> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => BlocProvider<BrowserBloc>(
-          bloc: DependenciesProvider.provideBrowserBloc(),
-          child: BrowserScreen(url: url),
-        ),
+        builder: (context) => BrowserScreen.createWidget(url)
       ),
     );
   }

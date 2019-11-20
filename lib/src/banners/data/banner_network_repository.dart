@@ -49,7 +49,7 @@ class BannerNetworkRepository extends ApiRepository
   }
 
   Banner _parseBanner(Map<String, dynamic> json) {
-    return new Banner(json['imageUrl'], json['linkUrl']);
+    return new Banner(json['asin'], json['imageUrl'], json['linkUrl']);
   }
 
   BannerGroupType _parseBannerGroupType(String type) {

@@ -16,10 +16,7 @@ class ProductItemWidget extends StatelessWidget {
 
     return new GestureDetector(
         onTap: () {
-          final screen = BlocProvider<ProductBloc>(
-            bloc: DependenciesProvider.provideProductBloc(product),
-            child: ProductScreen(product),
-          );
+          final screen = ProductScreen.createWidget(product);
 
           Navigator.push(
             context,

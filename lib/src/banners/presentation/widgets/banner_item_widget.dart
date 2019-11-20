@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:toriishopping/src/Browser/presentation/screens/browser_screen.dart';
 import 'package:toriishopping/src/banners/domain/entities/banner.dart'
     as toriiBanner;
-import 'package:toriishopping/src/browser/presentation/blocs/browser_bloc.dart';
-import 'package:toriishopping/src/common/di/depdendencies_provider.dart';
-import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
+import 'package:toriishopping/src/browser/presentation/screens/browser_screen.dart';
 import 'package:toriishopping/src/common/presentation/widgets/functions.dart';
+import 'package:toriishopping/src/products/presentation/screens/product_screen.dart';
 
 class BannerItemWidget extends StatelessWidget {
   final toriiBanner.Banner banner;
@@ -25,12 +23,13 @@ class BannerItemWidget extends StatelessWidget {
     return new GestureDetector(
         onTap: () {
           onItemTap(banner);
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => BlocProvider<BrowserBloc>(
-                      bloc: DependenciesProvider.provideBrowserBloc(),
-                      child: BrowserScreen(url: banner.linkUrl))));
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            if ((banner?.asin ?? "").isNotEmpty) {
+              return ProductScreen.createWidgetByAsin(banner.asin);
+            } else {
+              return BrowserScreen.createWidget(banner.linkUrl);
+            }
+          }));
         },
         child: Container(
             padding: padding,

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:share/share.dart';
 import 'package:toriishopping/src/browser/presentation/blocs/browser_bloc.dart';
+import 'package:toriishopping/src/common/di/depdendencies_provider.dart';
 import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
 import 'package:toriishopping/src/common/presentation/widgets/clear_all_button.dart';
 import 'package:toriishopping/src/common/presentation/widgets/share_button.dart';
-import 'package:toriishopping/src/notifications/notifications_handler.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 // ignore: must_be_immutable
@@ -14,6 +14,12 @@ class BrowserScreen extends StatelessWidget {
   WebViewController _webViewController;
 
   BrowserScreen({Key key, @required this.url});
+
+  static Widget createWidget(String url) {
+    return BlocProvider<BrowserBloc>(
+        bloc: DependenciesProvider.provideBrowserBloc(),
+        child: BrowserScreen(url: url));
+  }
 
   @override
   Widget build(BuildContext context) {

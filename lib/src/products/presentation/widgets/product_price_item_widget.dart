@@ -26,10 +26,8 @@ class ProductPriceItemWidget extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => BlocProvider<BrowserBloc>(
-                bloc: DependenciesProvider.provideBrowserBloc(),
-                child: BrowserScreen(url: productPrice.url),
-              ),
+                builder: (context) =>
+                    BrowserScreen.createWidget(productPrice.url)
             ),
           );
         },

@@ -1,6 +1,7 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:toriishopping/src/common/di/depdendencies_provider.dart';
 import 'package:toriishopping/src/common/presentation/blocs/BlocProvider.dart';
 import 'package:toriishopping/src/common/presentation/snackbar.dart';
 import 'package:toriishopping/src/common/torii_colors.dart';
@@ -14,6 +15,17 @@ class ProductScreen extends StatelessWidget {
   Product initialData;
 
   ProductScreen(this.initialData);
+
+  static Widget createWidget(Product product){
+    return BlocProvider<ProductBloc>(
+      bloc: DependenciesProvider.provideProductBloc(product),
+      child: ProductScreen(product),
+    );
+  }
+
+  static Widget createWidgetByAsin(String asin){
+    return createWidget(new Product(asin, "", "", [], "", "", "", []));
+  }
 
   @override
   Widget build(BuildContext context) {

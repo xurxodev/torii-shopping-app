@@ -31,7 +31,7 @@ class ProductItemWidget extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 Hero(
-                  tag: product.name,
+                  tag: product.asin,
                   child: product.images.length > 0
                       ? Image.network(
                           product.images[0],

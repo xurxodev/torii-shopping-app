@@ -82,7 +82,7 @@ class ProductScreen extends StatelessWidget {
             child: Container(
           margin: EdgeInsets.all(16.0),
           child: Hero(
-            tag: product.name,
+            tag: product.asin,
             child: Carousel(
                 defaultImage: Image.asset('assets/images/empty_image.png'),
                 boxFit: BoxFit.scaleDown,

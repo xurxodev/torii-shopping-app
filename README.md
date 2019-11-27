@@ -7,6 +7,20 @@ ToriiShopping app is a shopping demo app written using flutter for iOS and Andro
 Show carousel of products, deals, services and categories of several online shops.
 You can search products and navigate to shop web to buy it.
 
+## Stores
+
+Available in Google Store and 
+
+<a href='https://play.google.com/store/apps/details?id=com.xurxodev.toriishopping'>
+<img width="200" alt="play Store" src="https://user-images.githubusercontent.com/5593590/69732142-60970f80-112b-11ea-8ef1-9afcd54f90dd.png">
+</a>  
+
+Available in  App Store
+
+<a href='https://apps.apple.com/es/app/torii-shopping/id1484532886'>
+<img width="200" alt="play Store" src="https://user-images.githubusercontent.com/5593590/69728070-12cad900-1124-11ea-8f5e-1c1ee5a466ce.png">
+</a>
+
 ## Screenshots
 <img width="600" alt="home" src="https://user-images.githubusercontent.com/5593590/68067225-3a589c80-fd44-11e9-98fa-b534a1834663.png">
 <img width="600" alt="search-suggestions" src="https://user-images.githubusercontent.com/5593590/68067222-3a589c80-fd44-11e9-99f0-f41d85621ed6.png">
